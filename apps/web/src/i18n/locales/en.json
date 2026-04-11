@@ -43,8 +43,8 @@
     },
     "static": {
       "ip": "IP address",
-      "subnet": "Subnet mask",
-      "gateway": "Gateway",
+      "gateway": "Gateway address",
+      "dns": "DNS address",
       "invalid": "Invalid IPv4 address"
     },
     "save": "Save",

@@ -32,6 +32,6 @@ export interface ProtocolOption {
 /** Static IP configuration — only relevant when NetworkProtocol.STATIC is selected. */
 export interface NetworkStaticConfig {
   ip: string;
-  subnet: string;
   gateway: string;
+  dns: string;
 }

@@ -43,8 +43,8 @@
     },
     "static": {
       "ip": "IP-Adresse",
-      "subnet": "Subnetzmaske",
-      "gateway": "Gateway",
+      "gateway": "Gateway-Adresse",
+      "dns": "DNS-Adresse",
       "invalid": "Ungültige IPv4-Adresse"
     },
     "save": "Speichern",
