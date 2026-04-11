@@ -22,6 +22,18 @@
     "network": "Red",
     "log": "Registro"
   },
+  "settings": {
+    "title": "Ajustes",
+    "personal": "Personal",
+    "colorTheme": {
+      "label": "Tema de color"
+    },
+    "language": {
+      "label": "Idioma"
+    },
+    "save": "Guardar ajustes",
+    "saveTodo": "todo"
+  },
   "dashboard": {
     "hostname": "Nombre de host: {{name}}"
   },

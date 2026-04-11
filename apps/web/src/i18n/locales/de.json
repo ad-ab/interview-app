@@ -22,6 +22,18 @@
     "network": "Netzwerk",
     "log": "Protokoll"
   },
+  "settings": {
+    "title": "Einstellungen",
+    "personal": "Persönlich",
+    "colorTheme": {
+      "label": "Farbthema"
+    },
+    "language": {
+      "label": "Sprache"
+    },
+    "save": "Einstellungen speichern",
+    "saveTodo": "todo"
+  },
   "dashboard": {
     "hostname": "Hostname: {{name}}"
   },

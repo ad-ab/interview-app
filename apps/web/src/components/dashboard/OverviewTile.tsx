@@ -1,4 +1,4 @@
-import { useFormat } from "@/hooks/useFormat";
+import { useFormat } from "../../hooks/useFormat";
 import { Tile } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 
