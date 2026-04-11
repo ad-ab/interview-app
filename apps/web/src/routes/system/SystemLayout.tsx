@@ -1,9 +1,9 @@
 import { Outlet, useLocation } from "@tanstack/react-router";
 import { SideNav, SideNavItems, SideNavMenuItem } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { useSidebar } from "../../context/SidebarContext";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { breakpoints } from "../../lib/breakpoints";
+import { useSidebar } from "@/context/SidebarContext";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { breakpoints } from "@/lib/breakpoints";
 
 const NAV_ITEMS = [
   { labelKey: "system.settings", to: "/system/settings" },

@@ -7,9 +7,9 @@ import {
   SideNavMenuItem,
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { useSidebar } from "../../context/SidebarContext";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { breakpoints } from "../../lib/breakpoints";
+import { useSidebar } from "@/context/SidebarContext";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { breakpoints } from "@/lib/breakpoints";
 
 const NAV_ITEMS = [
   { labelKey: "config.pools", to: "/configuration/pools" },
@@ -48,7 +48,10 @@ export default function ConfigurationLayout() {
           ))}
         </SideNavItems>
       </SideNav>
-      <main className="tw-p-8" style={{ marginLeft: isLargeScreen ? "256px" : "0" }}>
+      <main
+        className="tw-p-8"
+        style={{ marginLeft: isLargeScreen ? "256px" : "0" }}
+      >
         <Outlet />
       </main>
     </>

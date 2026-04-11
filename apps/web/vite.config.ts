@@ -9,10 +9,20 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Sass setup per Carbon v11 recommendations: https://github.com/carbon-design-system/carbon/blob/main/packages/styles/docs/sass.md#configuration
   css: {
     preprocessorOptions: {
       scss: {
-        api: 'modern',
+        api: 'modern-compiler',
+        loadPaths: ['node_modules'],
+        quietDeps: true,
+        silenceDeprecations: [
+          'global-builtin',
+          'import',
+          'slash-div',
+          'color-functions',
+          'legacy-js-api',
+        ],
       },
     },
   },
