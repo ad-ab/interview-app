@@ -43,7 +43,7 @@
     },
     "static": {
       "ip": "Dirección IP",
-      "gateway": "Puerta de enlace",
+      "gateway": "Puerta de Enlace",
       "dns": "Dirección DNS",
       "invalid": "Dirección IPv4 no válida"
     },

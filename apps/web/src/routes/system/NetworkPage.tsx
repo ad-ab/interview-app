@@ -9,17 +9,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { NetworkProtocol, type NetworkStaticConfig } from "@/types";
 import { PROTOCOL_OPTIONS } from "@/const";
+import { isValidIPv4 } from "@/ipUtils";
 import PageTitle from "@/components/PageTitle";
-
-// Loose IPv4 check — each octet 0-255. Used only for a visual invalid state;
-// the Save button is a placeholder today, so validation never blocks submission.
-const IPV4_REGEX =
-  /^(25[0-5]|2[0-4]\d|[01]?\d?\d)(\.(25[0-5]|2[0-4]\d|[01]?\d?\d)){3}$/;
-
-function isValidIPv4(value: string): boolean {
-  if (value === "") return true; // empty fields are not yet invalid
-  return IPV4_REGEX.test(value.trim());
-}
 
 type StaticFieldKey = keyof NetworkStaticConfig;
 

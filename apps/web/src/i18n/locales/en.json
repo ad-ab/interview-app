@@ -42,9 +42,9 @@
       "static": "Static"
     },
     "static": {
-      "ip": "IP address",
-      "gateway": "Gateway address",
-      "dns": "DNS address",
+      "ip": "IP Address",
+      "gateway": "Gateway Address",
+      "dns": "DNS Address",
       "invalid": "Invalid IPv4 address"
     },
     "save": "Save",
