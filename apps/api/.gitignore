@@ -1,0 +1,31 @@
+# ─── Rust / Cargo ─────────────────────────────────────────────────────────────
+
+# Build output — this is a binary crate in a workspace; the workspace target/
+# lives at the repo root, but keep this rule in case someone builds from here.
+target/
+debug/
+
+# Cargo.lock is checked in for binaries (this crate), so do NOT ignore it.
+# (If this ever becomes a library crate, uncomment the next line.)
+# Cargo.lock
+
+# rustc / llvm artifacts
+*.pdb
+*.rs.bk
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Editor / IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

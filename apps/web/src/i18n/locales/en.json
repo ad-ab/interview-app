@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "configuration": "Configuration",
+    "system": "System"
+  },
+  "topbar": {
+    "documentation": "Documentation"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "config": {
+    "pools": "Pools",
+    "performance": "Performance",
+    "cooling": "Cooling"
+  },
+  "system": {
+    "settings": "Settings",
+    "network": "Network",
+    "log": "Log"
+  },
+  "dashboard": {
+    "hostname": "Hostname: {{name}}"
+  },
+  "overview": {
+    "fanMonitor": "Fan Monitor",
+    "metrics": {
+      "realHashrate": "Real Hashrate",
+      "temperature": "Temperature (Chip)",
+      "efficiency": "Est. Efficiency",
+      "power": "Power Usage",
+      "dps": "Dynamic Performance Scaling",
+      "poolStatus": "Pool Status",
+      "tunerStatus": "Tuner Status"
+    },
+    "poolStatus": {
+      "alive": "Alive",
+      "dead": "Dead",
+      "degraded": "Degraded"
+    },
+    "tunerStatus": {
+      "stable": "Stable",
+      "unstable": "Unstable",
+      "error": "Error"
+    }
+  },
+  "common": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+  "chart": {
+    "tabs": {
+      "ariaLabel": "Chart data selection",
+      "overall": "Overall Status",
+      "hashrate": "HashRate",
+      "temperature": "Temperature"
+    }
+  }
+}

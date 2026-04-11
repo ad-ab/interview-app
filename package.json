@@ -1,0 +1,20 @@
+{
+  "name": "my-fullstack-app",
+  "version": "1.0.0",
+  "description": "Fullstack app with Rust backend and React frontend",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd apps/api && cargo watch -q -c -w src -x run",
+    "dev:frontend": "cd apps/web && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd apps/api && cargo build --release",
+    "build:frontend": "cd apps/web && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd apps/api && cargo test",
+    "test:frontend": "cd apps/web && npm run test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

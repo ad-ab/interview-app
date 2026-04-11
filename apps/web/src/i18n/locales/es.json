@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "configuration": "Configuración",
+    "system": "Sistema"
+  },
+  "topbar": {
+    "documentation": "Documentación"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "system": "Sistema"
+  },
+  "config": {
+    "pools": "Grupos",
+    "performance": "Rendimiento",
+    "cooling": "Enfriamiento"
+  },
+  "system": {
+    "settings": "Ajustes",
+    "network": "Red",
+    "log": "Registro"
+  },
+  "dashboard": {
+    "hostname": "Nombre de host: {{name}}"
+  },
+  "overview": {
+    "fanMonitor": "Monitor de ventiladores",
+    "metrics": {
+      "realHashrate": "Tasa de hash real",
+      "temperature": "Temperatura (Chip)",
+      "efficiency": "Eficiencia est.",
+      "power": "Consumo de energía",
+      "dps": "Escalado dinámico de rendimiento",
+      "poolStatus": "Estado del grupo",
+      "tunerStatus": "Estado del sintonizador"
+    },
+    "poolStatus": {
+      "alive": "Activo",
+      "dead": "Caído",
+      "degraded": "Degradado"
+    },
+    "tunerStatus": {
+      "stable": "Estable",
+      "unstable": "Inestable",
+      "error": "Error"
+    }
+  },
+  "common": {
+      "enabled": "Activado",
+      "disabled": "Desactivado"
+    },
+  "chart": {
+    "tabs": {
+      "ariaLabel": "Selección de datos del gráfico",
+      "overall": "Estado general",
+      "hashrate": "Tasa de hash",
+      "temperature": "Temperatura"
+    }
+  }
+}

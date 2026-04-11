@@ -1,0 +1,75 @@
+@use '@carbon/react';
+@use '@carbon/react/scss/breakpoint' as bp;
+
+// Full-screen dark background
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+
+// Override Carbon's blue interactive color with purple
+.cds--g100, .cds--white {
+  --cds-interactive: #6b50ff;
+  --cds-focus: #6b50ff;
+  --cds-link-primary: #6b50ff ;
+  --cds-link-primary-hover: #8a6fff ;
+  --cds-border-interactive: #6b50ff ;
+  --cds-button-primary: #6b50ff ;
+  --cds-button-primary-hover: #5a3fe0 ;
+  --cds-button-primary-active: #4a30c0 ;
+
+  // Override active nav item accent line color
+  .cds--header__menu-item--current::after {
+    background-color: #6b50ff !important;
+  }
+}
+
+// Hide focus outlines for mouse users, keep them for keyboard users.
+// `:focus-visible` is set by the browser only when focus should be visually
+// indicated (typically keyboard navigation), so elements that are focused but
+// not :focus-visible are mouse clicks — strip Carbon's outlines/box-shadows there.
+*:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+// Carbon's header menu items draw their focus ring via `border-color`
+// (see `a.cds--header__menu-item:focus` in @carbon/styles). The generic
+// rule above only handles outline/box-shadow, so reset the border too
+// for non-keyboard focus. The ::after current-page indicator is unaffected.
+.cds--header__menu-item:focus:not(:focus-visible) {
+  border-color: transparent !important;
+}
+
+// Remove the vertical divider line next to header nav items
+.cds--header__nav::before {
+  display: none;
+}
+
+// Always show the header navigation regardless of screen width
+.cds--header__nav {
+  display: flex !important;
+}
+
+// Darker tile/card backgrounds on the dashboard
+.cds--tile {
+  background-color: var(--cds-layer-background-01);
+}
+
+// Hide documentation label on narrow screens
+@include bp.breakpoint-down('lg') {
+  .topbar-docs-label {
+    display: none;
+  }
+}
+
+
+@tailwind components;
+@tailwind utilities;

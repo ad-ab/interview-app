@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "configuration": "Konfiguration",
+    "system": "System"
+  },
+  "topbar": {
+    "documentation": "Dokumentation"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "config": {
+    "pools": "Pools",
+    "performance": "Leistung",
+    "cooling": "Kühlung"
+  },
+  "system": {
+    "settings": "Einstellungen",
+    "network": "Netzwerk",
+    "log": "Protokoll"
+  },
+  "dashboard": {
+    "hostname": "Hostname: {{name}}"
+  },
+  "overview": {
+    "fanMonitor": "Lüfterüberwachung",
+    "metrics": {
+      "realHashrate": "Echte Hashrate",
+      "temperature": "Temperatur (Chip)",
+      "efficiency": "Gesch. Effizienz",
+      "power": "Stromverbrauch",
+      "dps": "Dynamische Leistungsskalierung",
+      "poolStatus": "Pool-Status",
+      "tunerStatus": "Tuner-Status"
+    },
+    "poolStatus": {
+      "alive": "Aktiv",
+      "dead": "Inaktiv",
+      "degraded": "Beeinträchtigt"
+    },
+    "tunerStatus": {
+      "stable": "Stabil",
+      "unstable": "Instabil",
+      "error": "Fehler"
+    }
+  },
+  "common": {
+      "enabled": "Aktiviert",
+      "disabled": "Deaktiviert"
+    },
+  "chart": {
+    "tabs": {
+      "ariaLabel": "Diagramm-Datenauswahl",
+      "overall": "Gesamtstatus",
+      "hashrate": "Hashrate",
+      "temperature": "Temperatur"
+    }
+  }
+}
