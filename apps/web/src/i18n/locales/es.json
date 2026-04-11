@@ -26,15 +26,10 @@
     "title": "Ajustes",
     "personal": "Personal",
     "colorTheme": {
-      "label": "Tema de color",
-      "description": "Cambia entre la apariencia clara y oscura.",
-      "toggleLabelA": "Claro",
-      "toggleLabelB": "Oscuro"
+      "label": "Tema de color"
     },
     "language": {
-      "label": "Idioma",
-      "description": "Elige el idioma utilizado en toda la interfaz.",
-      "placeholder": "Selecciona un idioma"
+      "label": "Idioma"
     },
     "save": "Guardar ajustes",
     "saveTodo": "todo"

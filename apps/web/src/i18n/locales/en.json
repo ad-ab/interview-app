@@ -26,15 +26,10 @@
     "title": "Settings",
     "personal": "Personal",
     "colorTheme": {
-      "label": "Color Theme",
-      "description": "Switch between light and dark appearance.",
-      "toggleLabelA": "Light",
-      "toggleLabelB": "Dark"
+      "label": "Color Theme"
     },
     "language": {
-      "label": "Language",
-      "description": "Choose the language used throughout the interface.",
-      "placeholder": "Select a language"
+      "label": "Language"
     },
     "save": "Save Settings",
     "saveTodo": "todo"

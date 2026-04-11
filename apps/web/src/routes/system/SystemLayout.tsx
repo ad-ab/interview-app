@@ -42,7 +42,14 @@ export default function SystemLayout() {
           ))}
         </SideNavItems>
       </SideNav>
-      <main className="tw-p-8" style={{ marginLeft: isLargeScreen ? "256px" : "0" }}>
+      <main
+        className="tw-p-8"
+        style={{
+          marginLeft: isLargeScreen ? "256px" : "0",
+          flex: 1,
+          minWidth: 0,
+        }}
+      >
         <Outlet />
       </main>
     </>
