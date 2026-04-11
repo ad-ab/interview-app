@@ -34,6 +34,22 @@
     "save": "Save Settings",
     "saveTodo": "todo"
   },
+  "network": {
+    "title": "Network",
+    "protocol": {
+      "label": "Protocol",
+      "dhcp": "DHCP Client",
+      "static": "Static"
+    },
+    "static": {
+      "ip": "IP Address",
+      "gateway": "Gateway Address",
+      "dns": "DNS Address",
+      "invalid": "Invalid IPv4 address"
+    },
+    "save": "Save",
+    "saveTodo": "todo"
+  },
   "dashboard": {
     "hostname": "Hostname: {{name}}"
   },

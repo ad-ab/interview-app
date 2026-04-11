@@ -4,7 +4,9 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/context/ThemeContext";
 import { Theme, type LanguageOption } from "@/types";
 import { LANGUAGE_OPTIONS, THEME_OPTIONS } from "@/const";
+import PageTitle from "@/components/PageTitle";
 import ThemeIcon from "@/components/ThemeIcon";
+import TileTitle from "@/components/TileTitle";
 
 export default function SettingsPage() {
   const { t, i18n } = useTranslation();
@@ -56,13 +58,9 @@ export default function SettingsPage() {
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-1">
-      <h1 className="tw-font-bold tw-m-0 tw-mb-4 tw-text-2xl">
-        {t("settings.title")}
-      </h1>
+      <PageTitle>{t("settings.title")}</PageTitle>
 
-      <h2 className="tw-font-bold tw-m-0 tw-mb-2 tw-text-base">
-        {t("settings.personal")}
-      </h2>
+      <TileTitle>{t("settings.personal")}</TileTitle>
 
       <Tile className="tw-flex tw-flex-col tw-w-full">
         <div className="tw-flex tw-items-center tw-justify-between tw-gap-6 tw-flex-wrap">
