@@ -34,6 +34,22 @@
     "save": "Guardar ajustes",
     "saveTodo": "todo"
   },
+  "network": {
+    "title": "Red",
+    "protocol": {
+      "label": "Protocolo",
+      "dhcp": "Cliente DHCP",
+      "static": "Estática"
+    },
+    "static": {
+      "ip": "Dirección IP",
+      "subnet": "Máscara de subred",
+      "gateway": "Puerta de enlace",
+      "invalid": "Dirección IPv4 no válida"
+    },
+    "save": "Guardar",
+    "saveTodo": "todo"
+  },
   "dashboard": {
     "hostname": "Nombre de host: {{name}}"
   },

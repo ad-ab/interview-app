@@ -16,3 +16,22 @@ export interface LanguageOption {
   code: string;
   label: string;
 }
+
+/** Network interface protocol on the System → Network page. */
+export enum NetworkProtocol {
+  DHCP = "dhcp",
+  STATIC = "static",
+}
+
+/** One entry in the Protocol switcher. */
+export interface ProtocolOption {
+  value: NetworkProtocol;
+  labelKey: string;
+}
+
+/** Static IP configuration — only relevant when NetworkProtocol.STATIC is selected. */
+export interface NetworkStaticConfig {
+  ip: string;
+  subnet: string;
+  gateway: string;
+}
