@@ -22,6 +22,23 @@
     "network": "Netzwerk",
     "log": "Protokoll"
   },
+  "settings": {
+    "title": "Einstellungen",
+    "personal": "Persönlich",
+    "colorTheme": {
+      "label": "Farbthema",
+      "description": "Wechsle zwischen hellem und dunklem Erscheinungsbild.",
+      "toggleLabelA": "Hell",
+      "toggleLabelB": "Dunkel"
+    },
+    "language": {
+      "label": "Sprache",
+      "description": "Wähle die Sprache, die in der gesamten Oberfläche verwendet wird.",
+      "placeholder": "Sprache auswählen"
+    },
+    "save": "Einstellungen speichern",
+    "saveTodo": "todo"
+  },
   "dashboard": {
     "hostname": "Hostname: {{name}}"
   },

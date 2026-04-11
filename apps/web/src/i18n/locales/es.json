@@ -22,6 +22,23 @@
     "network": "Red",
     "log": "Registro"
   },
+  "settings": {
+    "title": "Ajustes",
+    "personal": "Personal",
+    "colorTheme": {
+      "label": "Tema de color",
+      "description": "Cambia entre la apariencia clara y oscura.",
+      "toggleLabelA": "Claro",
+      "toggleLabelB": "Oscuro"
+    },
+    "language": {
+      "label": "Idioma",
+      "description": "Elige el idioma utilizado en toda la interfaz.",
+      "placeholder": "Selecciona un idioma"
+    },
+    "save": "Guardar ajustes",
+    "saveTodo": "todo"
+  },
   "dashboard": {
     "hostname": "Nombre de host: {{name}}"
   },
