@@ -1,13 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
-
-export enum Theme {
-  LIGHT = "white",
-  DARK = "g100",
-  SYSTEM = "system",
-}
-
-export type CarbonTheme = "white" | "g100";
+import { Theme, type CarbonTheme } from "@/types";
 
 function getSystemCarbonTheme(): CarbonTheme {
   return window.matchMedia("(prefers-color-scheme: dark)").matches
