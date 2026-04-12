@@ -190,7 +190,7 @@ export default function PoolsTable({
                       label="Delete"
                       kind="ghost"
                       size="sm"
-                      className="tw-ml-3"
+                      className="tw-ml-4"
                       onClick={() => setConfirmingDeleteId(pool.id)}
                     >
                       <TrashCan />
