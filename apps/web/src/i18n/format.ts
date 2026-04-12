@@ -15,6 +15,10 @@ export function formatDateTime(date: Date, locale: string, options?: Intl.DateTi
   return new Intl.DateTimeFormat(locale, defaults).format(date)
 }
 
+export function formatTime(date: Date, locale: string): string {
+  return new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(date)
+}
+
 export function formatNumber(value: number, locale: string, options?: Intl.NumberFormatOptions): string {
   return new Intl.NumberFormat(locale, options).format(value)
 }
