@@ -1,4 +1,4 @@
-import { LogSeverity, type BoardRow, type LogEntry, type PoolGroup } from "@/types";
+import { LogSeverity, type BoardRow, type ChartDataPoint, type LogEntry, type PoolGroup } from "@/types";
 
 // ── Dashboard — DashboardPage ────────────────────────────────────────────────
 
@@ -52,44 +52,83 @@ export const MOCK_FANS = [
 
 // ── Dashboard — HashrateChartTile ────────────────────────────────────────────
 
-export const MOCK_HASHRATE_BARS = [
-  68, 72, 75, 80, 78, 82, 85, 88, 84, 87, 90, 92, 89, 91, 94, 93, 95, 96, 94,
-  97, 95, 94, 96, 95,
+/** 24 hourly ISO timestamps starting 2026-04-12T00:00:00. */
+const HOURS = Array.from({ length: 24 }, (_, i) =>
+  `2026-04-12T${String(i).padStart(2, "0")}:00:00`
+);
+
+/**
+ * Overall Status tab — dual series: Hashrate (TH/s) on left axis,
+ * Temperature (°C) on right axis.
+ */
+export const MOCK_OVERALL_SERIES: ChartDataPoint[] = [
+  ...([88, 90, 87, 85, 86, 89, 91, 93, 92, 94, 95, 96,
+       94, 93, 95, 97, 96, 94, 95, 93, 92, 91, 90, 89] as number[]).map(
+    (value, i) => ({ group: "Hashrate", date: HOURS[i], value })
+  ),
+  ...([70, 71, 70, 69, 69, 70, 71, 72, 73, 74, 74, 75,
+       74, 73, 74, 75, 75, 74, 73, 72, 71, 71, 70, 70] as number[]).map(
+    (value, i) => ({ group: "Temperature", date: HOURS[i], value })
+  ),
 ];
 
-export const MOCK_OVERALL_BARS = [
-  65, 68, 70, 72, 75, 78, 80, 82, 80, 83, 85, 87, 85, 86, 88, 89, 90, 91, 90,
-  92, 91, 90, 92, 91,
+/** Nominal average hashrate used as a reference line on the Hashrate tab. */
+export const MOCK_NOMINAL_HASHRATE = 95;
+
+/**
+ * Hashrate tab — single Hashrate series plus a flat "Nominal Average"
+ * series rendered as a reference line.
+ */
+export const MOCK_HASHRATE_SERIES: ChartDataPoint[] = [
+  ...([88, 90, 87, 85, 86, 89, 91, 93, 92, 94, 95, 96,
+       94, 93, 95, 97, 96, 94, 95, 93, 92, 91, 90, 89] as number[]).map(
+    (value, i) => ({ group: "Hashrate", date: HOURS[i], value })
+  ),
+  ...HOURS.map((date) => ({ group: "Nominal Average", date, value: MOCK_NOMINAL_HASHRATE })),
 ];
 
-export const MOCK_TEMPERATURE_BARS = [
-  62, 63, 65, 66, 67, 68, 70, 71, 72, 73, 72, 73, 74, 73, 72, 71, 70, 71, 72,
-  73, 74, 73, 72, 71,
+/**
+ * Temperature tab — six board/chip temperature series (°C, left axis)
+ * plus three fan speed series (%, right axis).
+ */
+export const MOCK_TEMPERATURE_SERIES: ChartDataPoint[] = [
+  ...([66, 67, 66, 65, 65, 67, 68, 69, 70, 71, 71, 72,
+       71, 70, 71, 72, 71, 70, 70, 69, 68, 68, 67, 66] as number[]).map(
+    (value, i) => ({ group: "1#Board", date: HOURS[i], value })
+  ),
+  ...([75, 76, 75, 74, 74, 76, 77, 78, 79, 80, 81, 81,
+       80, 79, 80, 81, 80, 79, 79, 78, 77, 77, 76, 75] as number[]).map(
+    (value, i) => ({ group: "1#Chip", date: HOURS[i], value })
+  ),
+  ...([68, 69, 68, 67, 67, 69, 70, 71, 72, 73, 73, 74,
+       73, 72, 73, 74, 73, 72, 72, 71, 70, 70, 69, 68] as number[]).map(
+    (value, i) => ({ group: "2#Board", date: HOURS[i], value })
+  ),
+  ...([77, 78, 77, 76, 76, 78, 79, 80, 81, 82, 83, 83,
+       82, 81, 82, 83, 82, 81, 81, 80, 79, 79, 78, 77] as number[]).map(
+    (value, i) => ({ group: "2#Chip", date: HOURS[i], value })
+  ),
+  ...([63, 64, 63, 62, 62, 64, 65, 66, 67, 68, 68, 69,
+       68, 67, 68, 69, 68, 67, 67, 66, 65, 65, 64, 63] as number[]).map(
+    (value, i) => ({ group: "3#Board", date: HOURS[i], value })
+  ),
+  ...([72, 73, 72, 71, 71, 73, 74, 75, 76, 77, 78, 78,
+       77, 76, 77, 78, 77, 76, 76, 75, 74, 74, 73, 72] as number[]).map(
+    (value, i) => ({ group: "3#Chip", date: HOURS[i], value })
+  ),
+  ...([71, 72, 71, 70, 70, 72, 73, 74, 75, 76, 76, 77,
+       76, 75, 76, 77, 76, 75, 74, 73, 72, 72, 71, 71] as number[]).map(
+    (value, i) => ({ group: "1#Fan", date: HOURS[i], value })
+  ),
+  ...([73, 74, 73, 72, 72, 74, 75, 76, 77, 78, 78, 79,
+       78, 77, 78, 79, 78, 77, 76, 75, 74, 74, 73, 73] as number[]).map(
+    (value, i) => ({ group: "2#Fan", date: HOURS[i], value })
+  ),
+  ...([69, 70, 69, 68, 68, 70, 71, 72, 73, 74, 74, 75,
+       74, 73, 74, 75, 74, 73, 72, 71, 70, 70, 69, 69] as number[]).map(
+    (value, i) => ({ group: "3#Fan", date: HOURS[i], value })
+  ),
 ];
-
-export const MOCK_CHART_DATASETS = [
-  {
-    key: "overall",
-    bars: MOCK_OVERALL_BARS,
-    avg: "83.4",
-    peak: "92.0",
-    unit: "%",
-  },
-  {
-    key: "hashrate",
-    bars: MOCK_HASHRATE_BARS,
-    avg: "88.7",
-    peak: "97.2",
-    unit: "TH/s",
-  },
-  {
-    key: "temperature",
-    bars: MOCK_TEMPERATURE_BARS,
-    avg: "70.1",
-    peak: "74.0",
-    unit: "°C",
-  },
-] as const;
 
 // ── System — Log page ────────────────────────────────────────────────────────
 

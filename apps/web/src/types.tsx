@@ -117,3 +117,13 @@ export enum METRIC_LABEL {
   POOL_STATUS = "poolStatus",
   TUNER_STATUS = "tunerStatus",
 }
+
+/** A single data point for Carbon Charts time-series charts. */
+export interface ChartDataPoint {
+  /** Series name — matches Carbon Charts `group` field. */
+  group: string;
+  /** ISO 8601 datetime string — matches Carbon Charts `date` field. */
+  date: string;
+  /** Numeric value — matches Carbon Charts `value` field. */
+  value: number;
+}
