@@ -105,5 +105,23 @@
       "description": "Description",
       "severity": "Severity"
     }
+  },
+  "pools": {
+    "title": "Pools",
+    "columns": {
+      "url": "Pool URL",
+      "username": "Username",
+      "password": "Password",
+      "actions": "Actions"
+    },
+    "addPool": "Add Pool",
+    "save": "Save",
+    "saveTodo": "todo",
+    "validation": {
+      "invalidUrl": "Must start with stratum+tcp:// or stratum+ssl://"
+    },
+    "deleteConfirm": "Are you sure you want to remove this pool?",
+    "deleteYes": "Yes",
+    "deleteNo": "No"
   }
 }
