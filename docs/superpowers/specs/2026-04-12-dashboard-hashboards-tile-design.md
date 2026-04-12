@@ -23,35 +23,35 @@ Create `apps/web/src/enums.ts`. Move the following enums out of `OverviewTile.ts
 ```ts
 export enum UNITS {
   TEMPERATURE = "°C",
-  HASHRATE    = "TH/s",
-  EFFICIENCY  = "W/THs",
-  POWER       = "kW",
-  RPM         = "RPM",
-  VOLT        = "V",    // voltage
-  MHZ         = "MHz",  // frequency
-  H_S         = "H/s",  // hardware error hashrate
+  HASHRATE = "TH/s",
+  EFFICIENCY = "W/THs",
+  POWER = "kW",
+  RPM = "RPM",
+  VOLTAGE = "V",
+  FREQUENCY = "MHz",
+  HASHRATEERRORS = "H/s",
 }
 
 export enum POOL_STATUS {
-  ALIVE    = "alive",
-  DEAD     = "dead",
+  ALIVE = "alive",
+  DEAD = "dead",
   DEGRADED = "degraded",
 }
 
 export enum TUNER_STATUS {
-  STABLE   = "stable",
+  STABLE = "stable",
   UNSTABLE = "unstable",
-  ERROR    = "error",
+  ERROR = "error",
 }
 
 export enum METRIC_LABEL {
   REAL_HASHRATE = "realHashrate",
-  TEMPERATURE   = "temperature",
-  EFFICIENCY    = "efficiency",
-  POWER         = "power",
-  DPS           = "dps",
-  POOL_STATUS   = "poolStatus",
-  TUNER_STATUS  = "tunerStatus",
+  TEMPERATURE = "temperature",
+  EFFICIENCY = "efficiency",
+  POWER = "power",
+  DPS = "dps",
+  POOL_STATUS = "poolStatus",
+  TUNER_STATUS = "tunerStatus",
 }
 ```
 
@@ -62,15 +62,18 @@ export enum METRIC_LABEL {
 ## 2. Layout Changes — `DashboardPage.tsx`
 
 ### Remove
+
 - `PoolsSection` inline component (and its `MOCK_POOLS` import)
 - `EventLog` inline component (and its `MOCK_EVENTS` import)
 - The nested `<Grid>` that placed those two side-by-side
 
 ### Add
+
 - Import `HashBoardsTile` from `@/components/dashboard/HashBoardsTile`
 - Render `<HashBoardsTile />` directly below `<HashrateChartTile />`, spanning the full `lg={11}` column — no nested grid needed
 
 ### Resulting column structure
+
 ```
 lg={11}
   <HashrateChartTile />     ← unchanged
@@ -85,39 +88,70 @@ lg={5}
 ## 3. New Component — `src/components/dashboard/HashBoardsTile.tsx`
 
 ### Heading
+
 Use `<TileTitle>Hash Boards</TileTitle>` (the shared `src/components/TileTitle.tsx` component).
 
 ### Container
+
 Wrap in `<Tile>` with standard `tw-p-5` padding.
 
 ### Table
+
 Use Carbon's `<Table>`, `<TableHead>`, `<TableRow>`, `<TableHeader>`, `<TableBody>`, `<TableCell>` components from `@carbon/react`.
 
 The `<TableBody>` must be transparent so the tile background shows through — apply `style={{ background: "transparent" }}` on the `<TableBody>` (and `<TableRow>` if Carbon overrides it).
 
 ### Columns
 
-| Header | Value format | Notes |
-|--------|-------------|-------|
-| ID | `1`, `2`, `3` | Row index, 1-based |
-| Real Hashrate | `XX.XX TH/s` | 10–40 range, 2 decimal places; unit from `UNITS.HASHRATE` |
-| Voltage | `XX.XX V` | 2 decimal places; unit from `UNITS.VOLT` |
-| Board Temp | `XX °C` | 40–100 range, integer; unit from `UNITS.TEMPERATURE` |
-| Chip Temp | `XX °C` | Higher than Board Temp, integer; unit from `UNITS.TEMPERATURE` |
-| Frequency | `XXX.X MHz` | 500–1000 range, 1 decimal place; unit from `UNITS.MHZ` |
-| ASIC# | `108` | Static value, no unit |
-| HW Error Hashrate | `0.000 H/s` | Fixed at zero, 3 decimal places; unit from `UNITS.H_S` |
+| Header            | Value format  | Notes                                                          |
+| ----------------- | ------------- | -------------------------------------------------------------- |
+| ID                | `1`, `2`, `3` | Row index, 1-based                                             |
+| Real Hashrate     | `XX.XX TH/s`  | 10–40 range, 2 decimal places; unit from `UNITS.HASHRATE`      |
+| Voltage           | `XX.XX V`     | 2 decimal places; unit from `UNITS.VOLT`                       |
+| Board Temp        | `XX °C`       | 40–100 range, integer; unit from `UNITS.TEMPERATURE`           |
+| Chip Temp         | `XX °C`       | Higher than Board Temp, integer; unit from `UNITS.TEMPERATURE` |
+| Frequency         | `XXX.X MHz`   | 500–1000 range, 1 decimal place; unit from `UNITS.MHZ`         |
+| ASIC#             | `108`         | Static value, no unit                                          |
+| HW Error Hashrate | `0.000 H/s`   | Fixed at zero, 3 decimal places; unit from `UNITS.H_S`         |
 
 ### Mock rows (component-private, not exported to `mockData.tsx`)
 
 Three rows of hardcoded representative values defined as a local `const` inside the component file. These are static UI scaffolding, not reusable mock data.
 
 Example shape:
+
 ```ts
 const BOARD_ROWS = [
-  { id: 1, hashrate: 24.83, voltage: 12.40, boardTemp: 68, chipTemp: 78, freq: 650.0, asic: 108, hwErr: 0.000 },
-  { id: 2, hashrate: 31.47, voltage: 12.38, boardTemp: 72, chipTemp: 84, freq: 725.5, asic: 108, hwErr: 0.000 },
-  { id: 3, hashrate: 18.92, voltage: 12.35, boardTemp: 61, chipTemp: 74, freq: 562.5, asic: 108, hwErr: 0.000 },
+  {
+    id: 1,
+    hashrate: 24.83,
+    voltage: 12.4,
+    boardTemp: 68,
+    chipTemp: 78,
+    freq: 650.0,
+    asic: 108,
+    hwErr: 0.0,
+  },
+  {
+    id: 2,
+    hashrate: 31.47,
+    voltage: 12.38,
+    boardTemp: 72,
+    chipTemp: 84,
+    freq: 725.5,
+    asic: 108,
+    hwErr: 0.0,
+  },
+  {
+    id: 3,
+    hashrate: 18.92,
+    voltage: 12.35,
+    boardTemp: 61,
+    chipTemp: 74,
+    freq: 562.5,
+    asic: 108,
+    hwErr: 0.0,
+  },
 ];
 ```
 
@@ -126,6 +160,7 @@ const BOARD_ROWS = [
 ## 4. Mock Data Cleanup — `src/mockData.tsx`
 
 Remove:
+
 - `MOCK_POOLS` export and its data
 - `MOCK_EVENTS` export and its data
 
@@ -135,13 +170,13 @@ These are no longer consumed anywhere.
 
 ## 5. Files Affected
 
-| File | Action |
-|------|--------|
-| `src/enums.ts` | **Create** — all four enums, UNITS expanded |
-| `src/components/dashboard/OverviewTile.tsx` | **Edit** — remove `const enum` blocks, add import from `@/enums` |
-| `src/components/dashboard/HashBoardsTile.tsx` | **Create** — new tile component |
-| `src/routes/DashboardPage.tsx` | **Edit** — remove PoolsSection + EventLog, add HashBoardsTile |
-| `src/mockData.tsx` | **Edit** — remove MOCK_POOLS and MOCK_EVENTS |
+| File                                          | Action                                                           |
+| --------------------------------------------- | ---------------------------------------------------------------- |
+| `src/enums.ts`                                | **Create** — all four enums, UNITS expanded                      |
+| `src/components/dashboard/OverviewTile.tsx`   | **Edit** — remove `const enum` blocks, add import from `@/enums` |
+| `src/components/dashboard/HashBoardsTile.tsx` | **Create** — new tile component                                  |
+| `src/routes/DashboardPage.tsx`                | **Edit** — remove PoolsSection + EventLog, add HashBoardsTile    |
+| `src/mockData.tsx`                            | **Edit** — remove MOCK_POOLS and MOCK_EVENTS                     |
 
 ---
 
