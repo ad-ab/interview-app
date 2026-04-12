@@ -20,10 +20,10 @@ import {
 } from "@carbon/react";
 import { Filter, Renew } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
-import { LOG_SEVERITY_OPTIONS } from "@/const";
-import { MOCK_LOG_DATA } from "@/mockData";
+import { LOG_SEVERITY_OPTIONS } from "@/shared/const";
+import { MOCK_LOG_DATA } from "@/shared/mockData";
 import { useFormat } from "@/hooks/useFormat";
-import type { LogSeverity } from "@/types";
+import type { LogSeverity } from "@/shared/types";
 
 const ALL_SEVERITIES = new Set<LogSeverity>(
   LOG_SEVERITY_OPTIONS.map((o) => o.value),

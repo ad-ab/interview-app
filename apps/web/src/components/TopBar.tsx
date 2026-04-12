@@ -14,7 +14,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { useSidebar } from "@/context/SidebarContext";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { breakpoints } from "@/lib/breakpoints";
-import { LANGUAGE_OPTIONS, THEME_OPTIONS } from "@/const";
+import { LANGUAGE_OPTIONS, THEME_OPTIONS } from "@/shared/const";
 import BraiinsWordmark from "@/components/BraiinsWordmark";
 import BraiinsOsIcon from "@/components/BraiinsOsIcon";
 import ThemeIcon from "@/components/ThemeIcon";

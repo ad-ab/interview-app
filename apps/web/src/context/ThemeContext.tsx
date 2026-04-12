@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
-import { Theme, type CarbonTheme } from "@/types";
+import { Theme, type CarbonTheme } from "@/shared/types";
 
 function getSystemCarbonTheme(): CarbonTheme {
   return window.matchMedia("(prefers-color-scheme: dark)").matches

@@ -8,9 +8,9 @@ import {
   Tile,
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { NetworkProtocol, type NetworkStaticConfig } from "@/types";
-import { PROTOCOL_OPTIONS } from "@/const";
-import { isValidIPv4 } from "@/ipUtils";
+import { NetworkProtocol, type NetworkStaticConfig } from "@/shared/types";
+import { PROTOCOL_OPTIONS } from "@/shared/const";
+import { isValidIPv4 } from "@/shared/ipUtils";
 import PageTitle from "@/components/PageTitle";
 
 type StaticFieldKey = keyof NetworkStaticConfig;

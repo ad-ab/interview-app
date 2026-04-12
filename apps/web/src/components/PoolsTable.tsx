@@ -13,7 +13,7 @@ import {
 } from "@carbon/react";
 import { ArrowUp, ArrowDown, TrashCan } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
-import type { PoolConfig } from "@/types";
+import type { PoolConfig } from "@/shared/types";
 
 interface PoolsTableProps {
   pools: PoolConfig[];

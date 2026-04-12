@@ -1,4 +1,4 @@
-import { LogSeverity, type BoardRow, type ChartDataPoint, type LogEntry, type PoolGroup } from "@/types";
+import { LogSeverity, type BoardRow, type ChartDataPoint, type LogEntry, type PoolGroup } from "@/shared/types";
 
 // ── Dashboard — DashboardPage ────────────────────────────────────────────────
 

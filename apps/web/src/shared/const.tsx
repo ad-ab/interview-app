@@ -5,7 +5,7 @@ import {
   type LanguageOption,
   type ProtocolOption,
   type ThemeOption,
-} from "@/types";
+} from "@/shared/types";
 
 export const THEME_OPTIONS: readonly ThemeOption[] = [
   { value: Theme.SYSTEM, labelKey: "theme.system", rotation: 60 },

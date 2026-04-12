@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import PageTitle from "@/components/PageTitle";
 import TileTitle from "@/components/TileTitle";
 import PoolsTable from "@/components/PoolsTable";
-import { MOCK_POOL_GROUPS } from "@/mockData";
-import type { PoolConfig, PoolGroup } from "@/types";
+import { MOCK_POOL_GROUPS } from "@/shared/mockData";
+import type { PoolConfig, PoolGroup } from "@/shared/types";
 
 let nextId = 100;
 

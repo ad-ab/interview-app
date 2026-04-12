@@ -6,13 +6,13 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/context/ThemeContext";
 import { useFormat } from "@/hooks/useFormat";
-import { unitForGroup } from "@/chartUtils";
+import { unitForGroup } from "@/shared/chartUtils";
 import {
   MOCK_OVERALL_SERIES,
   MOCK_HASHRATE_SERIES,
   MOCK_TEMPERATURE_SERIES,
   MOCK_NOMINAL_HASHRATE,
-} from "@/mockData";
+} from "@/shared/mockData";
 
 const CHART_HEIGHT = "320px";
 

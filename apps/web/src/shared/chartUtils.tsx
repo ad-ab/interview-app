@@ -1,4 +1,4 @@
-import { UNITS } from "@/types";
+import { UNITS } from "@/shared/types";
 
 const FAN_GROUPS = new Set(["1#Fan", "2#Fan", "3#Fan"]);
 

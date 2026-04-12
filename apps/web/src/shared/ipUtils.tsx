@@ -1,4 +1,4 @@
-import { IPV4_REGEX } from "@/regex";
+import { IPV4_REGEX } from "@/shared/regex";
 
 export const isValidIPv4 = (value: string): boolean => {
   if (value === "") return true;

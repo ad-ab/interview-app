@@ -1,8 +1,8 @@
 import { useFormat } from "@/hooks/useFormat";
 import { Tile } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import { MOCK_FANS } from "@/mockData";
-import { UNITS, POOL_STATUS, TUNER_STATUS } from "@/types";
+import { MOCK_FANS } from "@/shared/mockData";
+import { UNITS, POOL_STATUS, TUNER_STATUS } from "@/shared/types";
 
 const CONFIRMATION_GREEN = "#42be65";
 

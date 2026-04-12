@@ -9,8 +9,8 @@ import {
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import TileTitle from "@/components/TileTitle";
-import { UNITS } from "@/types";
-import { MOCK_HASH_BOARDS } from "@/mockData";
+import { UNITS } from "@/shared/types";
+import { MOCK_HASH_BOARDS } from "@/shared/mockData";
 import { useFormat } from "@/hooks/useFormat";
 
 const COLUMN_KEYS = [

@@ -9,8 +9,8 @@ import {
 } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/context/ThemeContext";
-import { Theme, type LanguageOption } from "@/types";
-import { LANGUAGE_OPTIONS, THEME_OPTIONS } from "@/const";
+import { Theme, type LanguageOption } from "@/shared/types";
+import { LANGUAGE_OPTIONS, THEME_OPTIONS } from "@/shared/const";
 import PageTitle from "@/components/PageTitle";
 import ThemeIcon from "@/components/ThemeIcon";
 import TileTitle from "@/components/TileTitle";
