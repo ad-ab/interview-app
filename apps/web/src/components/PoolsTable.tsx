@@ -68,7 +68,7 @@ export default function PoolsTable({
           </TableHeader>
         </TableRow>
       </TableHead>
-      <TableBody>
+      <TableBody className="!tw-bg-transparent">
         {pools.map((pool, index) => {
           if (confirmingDeleteId === pool.id) {
             return (

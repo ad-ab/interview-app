@@ -49,7 +49,7 @@ export default function ConfigurationLayout() {
         </SideNavItems>
       </SideNav>
       <main
-        className="tw-p-8"
+        className="tw-p-8 tw-w-full"
         style={{ marginLeft: isLargeScreen ? "256px" : "0" }}
       >
         <Outlet />

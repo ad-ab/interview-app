@@ -12,8 +12,8 @@ let nextId = 100;
 
 export default function PoolsPage() {
   const { t } = useTranslation();
-  const [draftGroups, setDraftGroups] = useState<PoolGroup[]>(
-    () => MOCK_POOL_GROUPS.map((g) => ({ ...g, pools: [...g.pools] })),
+  const [draftGroups, setDraftGroups] = useState<PoolGroup[]>(() =>
+    MOCK_POOL_GROUPS.map((g) => ({ ...g, pools: [...g.pools] })),
   );
 
   const updateGroupPools = (
@@ -29,9 +29,7 @@ export default function PoolsPage() {
 
   const handleToggle = (groupIndex: number, poolId: string) => {
     updateGroupPools(groupIndex, (pools) =>
-      pools.map((p) =>
-        p.id === poolId ? { ...p, enabled: !p.enabled } : p,
-      ),
+      pools.map((p) => (p.id === poolId ? { ...p, enabled: !p.enabled } : p)),
     );
   };
 
@@ -42,9 +40,7 @@ export default function PoolsPage() {
     value: string,
   ) => {
     updateGroupPools(groupIndex, (pools) =>
-      pools.map((p) =>
-        p.id === poolId ? { ...p, [field]: value } : p,
-      ),
+      pools.map((p) => (p.id === poolId ? { ...p, [field]: value } : p)),
     );
   };
 
@@ -90,7 +86,7 @@ export default function PoolsPage() {
   };
 
   return (
-    <Stack gap={1}>
+    <Stack gap={1} className="tw-w-full">
       <PageTitle>{t("pools.title")}</PageTitle>
 
       {draftGroups.map((group, groupIndex) => (
