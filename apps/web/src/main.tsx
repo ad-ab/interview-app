@@ -19,6 +19,7 @@ import NetworkPage from './routes/system/NetworkPage'
 import LogPage from './routes/system/LogPage'
 import './i18n'
 import './index.scss'
+import '@carbon/charts-react/styles.css'
 
 const rootRoute = createRootRoute({
   component: () => <App />,
