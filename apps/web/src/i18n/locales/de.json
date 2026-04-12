@@ -15,7 +15,8 @@
   "config": {
     "pools": "Pools",
     "performance": "Leistung",
-    "cooling": "Kühlung"
+    "cooling": "Kühlung",
+    "temporaryText": "Temporärer Text"
   },
   "system": {
     "settings": "Einstellungen",

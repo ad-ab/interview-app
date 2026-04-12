@@ -15,7 +15,8 @@
   "config": {
     "pools": "Grupos",
     "performance": "Rendimiento",
-    "cooling": "Enfriamiento"
+    "cooling": "Enfriamiento",
+    "temporaryText": "Texto Temporal"
   },
   "system": {
     "settings": "Ajustes",
