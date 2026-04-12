@@ -10,37 +10,58 @@ import {
   TableHeader,
   TableRow,
 } from "@carbon/react";
-import { Renew } from "@carbon/icons-react";
+import { Renew } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
-import { LogSeverity } from "@/types";
 import { LOG_SEVERITY_OPTIONS, SAMPLE_LOG_DATA } from "@/const";
 import { useFormat } from "@/hooks/useFormat";
 
 type SeverityOption = (typeof LOG_SEVERITY_OPTIONS)[number];
+
+interface SelectAllItem {
+  isSelectAll: true;
+  labelKey: string;
+}
+
+type MultiSelectItem = SeverityOption | SelectAllItem;
+
+const SELECT_ALL_ITEM: SelectAllItem = {
+  isSelectAll: true,
+  labelKey: "log.selectAll",
+};
+
+const MULTISELECT_ITEMS: MultiSelectItem[] = [
+  SELECT_ALL_ITEM,
+  ...LOG_SEVERITY_OPTIONS,
+];
 
 export default function LogsTable() {
   const { t } = useTranslation();
   const { formatDateTime } = useFormat();
 
   // Multi-select severity filter — all selected by default.
-  const [selectedSeverities, setSelectedSeverities] = useState<
-    readonly SeverityOption[]
-  >(LOG_SEVERITY_OPTIONS);
+  const [selectedItems, setSelectedItems] = useState<MultiSelectItem[]>([
+    ...MULTISELECT_ITEMS,
+  ]);
 
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
   const activeSeverities = useMemo(
-    () => new Set(selectedSeverities.map((s) => s.value)),
-    [selectedSeverities],
+    () =>
+      new Set(
+        selectedItems
+          .filter((item): item is SeverityOption => !("isSelectAll" in item))
+          .map((s) => s.value),
+      ),
+    [selectedItems],
   );
 
   const handleSeverityChange = ({
-    selectedItems,
+    selectedItems: newItems,
   }: {
-    selectedItems: SeverityOption[];
+    selectedItems: MultiSelectItem[];
   }) => {
-    setSelectedSeverities(selectedItems);
+    setSelectedItems(newItems);
     setPage(1);
   };
 
@@ -68,17 +89,16 @@ export default function LogsTable() {
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
-      {/* Severity filter + refresh — right-aligned */}
-      <div className="tw-flex tw-items-center tw-justify-end" style={{ gap: "1rem" }}>
+      <div className="tw-flex tw-items-center tw-justify-between ">
         <div style={{ minWidth: "220px" }}>
           <MultiSelect
             id="log-severity-filter"
             titleText=""
             hideLabel
             label={t("log.selectSeverity")}
-            items={[...LOG_SEVERITY_OPTIONS]}
-            itemToString={(item: SeverityOption) => t(item.labelKey)}
-            selectedItems={[...selectedSeverities]}
+            items={MULTISELECT_ITEMS}
+            itemToString={(item: MultiSelectItem) => t(item.labelKey)}
+            selectedItems={selectedItems}
             onChange={handleSeverityChange}
             selectionFeedback="top-after-reopen"
             size="sm"
@@ -120,7 +140,11 @@ export default function LogsTable() {
                   key={col.key}
                   style={
                     col.key === "time"
-                      ? { width: "180px", minWidth: "180px", whiteSpace: "nowrap" }
+                      ? {
+                          width: "180px",
+                          minWidth: "180px",
+                          whiteSpace: "nowrap",
+                        }
                       : undefined
                   }
                 >

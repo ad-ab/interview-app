@@ -91,6 +91,7 @@
     "title": "Protokoll",
     "refresh": "Aktualisieren",
     "selectSeverity": "Schweregrad wählen",
+    "selectAll": "Alle",
     "severity": {
       "debug": "Debug",
       "info": "Info",

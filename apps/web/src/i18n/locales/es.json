@@ -91,6 +91,7 @@
     "title": "Registro",
     "refresh": "Actualizar",
     "selectSeverity": "Seleccionar Severidad",
+    "selectAll": "Todos",
     "severity": {
       "debug": "Depuración",
       "info": "Info",

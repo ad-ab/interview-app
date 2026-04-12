@@ -91,6 +91,7 @@
     "title": "Log",
     "refresh": "Refresh",
     "selectSeverity": "Select Severity",
+    "selectAll": "All",
     "severity": {
       "debug": "Debug",
       "info": "Info",
