@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import TileTitle from "@/components/TileTitle";
 import { UNITS } from "@/types";
 import { MOCK_HASH_BOARDS } from "@/mockData";
+import { useFormat } from "@/hooks/useFormat";
 
 const COLUMN_KEYS = [
   "dashboard.hashBoards.col.id",
@@ -25,6 +26,10 @@ const COLUMN_KEYS = [
 
 export default function HashBoardsTile() {
   const { t } = useTranslation();
+  const { formatNumber } = useFormat();
+
+  const fmt = (value: number, decimals: number) =>
+    formatNumber(value, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
 
   return (
     <Tile className="tw-p-5">
@@ -41,25 +46,13 @@ export default function HashBoardsTile() {
           {MOCK_HASH_BOARDS.map((row) => (
             <TableRow key={row.id} className="tw-bg-transparent">
               <TableCell>{row.id}</TableCell>
-              <TableCell>
-                {row.hashrate.toFixed(2)} {UNITS.HASHRATE}
-              </TableCell>
-              <TableCell>
-                {row.voltage.toFixed(2)} {UNITS.VOLTAGE}
-              </TableCell>
-              <TableCell>
-                {row.boardTemp} {UNITS.TEMPERATURE}
-              </TableCell>
-              <TableCell>
-                {row.chipTemp} {UNITS.TEMPERATURE}
-              </TableCell>
-              <TableCell>
-                {row.freq.toFixed(1)} {UNITS.FREQUENCY}
-              </TableCell>
+              <TableCell>{fmt(row.hashrate, 2)} {UNITS.HASHRATE}</TableCell>
+              <TableCell>{fmt(row.voltage, 2)} {UNITS.VOLTAGE}</TableCell>
+              <TableCell>{fmt(row.boardTemp, 0)} {UNITS.TEMPERATURE}</TableCell>
+              <TableCell>{fmt(row.chipTemp, 0)} {UNITS.TEMPERATURE}</TableCell>
+              <TableCell>{fmt(row.freq, 1)} {UNITS.FREQUENCY}</TableCell>
               <TableCell>{row.asic}</TableCell>
-              <TableCell>
-                {row.hwErr.toFixed(3)} {UNITS.HASHRATEERRORS}
-              </TableCell>
+              <TableCell>{fmt(row.hwErr, 3)} {UNITS.HASHRATEERRORS}</TableCell>
             </TableRow>
           ))}
         </TableBody>
