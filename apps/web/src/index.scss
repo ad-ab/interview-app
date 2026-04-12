@@ -1,5 +1,13 @@
-@use '@carbon/react';
+@use 'sass:color';
+
 @use '@carbon/react/scss/breakpoint' as bp;
+@use '@carbon/react';
+
+
+$primary-color: #6b50ff;
+$primary-hover-light: color.scale($primary-color, $lightness: 10%);
+$primary-hover-dark: color.scale($primary-color, $lightness: -5%);
+$primary-active-dark: color.scale($primary-color, $lightness: -10%);
 
 // Full-screen dark background
 html,
@@ -16,18 +24,18 @@ body {
 
 // Override Carbon's blue interactive color with purple
 .cds--g100, .cds--white {
-  --cds-interactive: #6b50ff;
-  --cds-focus: #6b50ff;
-  --cds-link-primary: #6b50ff ;
-  --cds-link-primary-hover: #8a6fff ;
-  --cds-border-interactive: #6b50ff ;
-  --cds-button-primary: #6b50ff ;
-  --cds-button-primary-hover: #5a3fe0 ;
-  --cds-button-primary-active: #4a30c0 ;
+  --cds-interactive: #{$primary-color};
+  --cds-focus: #{$primary-color};
+  --cds-link-primary: #{$primary-color};
+  --cds-link-primary-hover: #{$primary-hover-light};
+  --cds-border-interactive: #{$primary-color};
+  --cds-button-primary: #{$primary-color};
+  --cds-button-primary-hover: #{$primary-hover-dark};
+  --cds-button-primary-active: #{$primary-active-dark};
 
   // Override active nav item accent line color
   .cds--header__menu-item--current::after {
-    background-color: #6b50ff !important;
+    background-color: #{$primary-color} !important;
   }
 }
 

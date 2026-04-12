@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { Button, ContentSwitcher, Dropdown, Switch, Tile } from "@carbon/react";
+import {
+  Button,
+  ContentSwitcher,
+  Dropdown,
+  Stack,
+  Switch,
+  Tile,
+} from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/context/ThemeContext";
 import { Theme, type LanguageOption } from "@/types";
@@ -12,12 +19,10 @@ export default function SettingsPage() {
   const { t, i18n } = useTranslation();
   const { preference, setPreference } = useTheme();
 
-  // Local draft state — not propagated until Save is pressed.
   const [draftTheme, setDraftTheme] = useState<Theme>(preference);
   const [draftLanguage, setDraftLanguage] = useState<string>(i18n.language);
 
-  // Keep the local drafts in sync when the global values change
-  // (e.g. user switches theme/language from the TopBar while the page is open).
+  // Keep local state in sync with the global theme and language
   useEffect(() => {
     setDraftTheme(preference);
   }, [preference]);
@@ -57,7 +62,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-1">
+    <Stack gap={1}>
       <PageTitle>{t("settings.title")}</PageTitle>
 
       <TileTitle>{t("settings.personal")}</TileTitle>
@@ -121,11 +126,9 @@ export default function SettingsPage() {
         </div>
       </Tile>
 
-      <div className="tw-flex tw-justify-start tw-mt-4">
-        <Button kind="primary" onClick={handleSave} className="tw-pr-4">
-          {t("settings.save")}
-        </Button>
-      </div>
-    </div>
+      <Button kind="primary" onClick={handleSave} className="tw-pr-4 tw-mt-4">
+        {t("settings.save")}
+      </Button>
+    </Stack>
   );
 }

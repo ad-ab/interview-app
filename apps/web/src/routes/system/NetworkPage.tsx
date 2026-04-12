@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   Button,
   ContentSwitcher,
+  Stack,
   Switch,
   TextInput,
   Tile,
@@ -66,8 +67,7 @@ export default function NetworkPage() {
   };
 
   const updateStaticField =
-    (field: StaticFieldKey) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (field: StaticFieldKey) => (e: React.ChangeEvent<HTMLInputElement>) => {
       setDraftStatic((prev) => ({ ...prev, [field]: e.target.value }));
     };
 
@@ -79,7 +79,7 @@ export default function NetworkPage() {
   const showStaticFields = draftProtocol === NetworkProtocol.STATIC;
 
   return (
-    <div className="tw-flex tw-flex-col tw-gap-1">
+    <Stack gap={1}>
       <PageTitle>{t("network.title")}</PageTitle>
 
       <Tile className="tw-flex tw-flex-col tw-w-full">
@@ -133,11 +133,9 @@ export default function NetworkPage() {
           );
         })}
 
-      <div className="tw-flex tw-justify-start tw-mt-4">
-        <Button kind="primary" onClick={handleSave} className="tw-pr-4">
-          {t("network.save")}
-        </Button>
-      </div>
-    </div>
+      <Button kind="primary" onClick={handleSave} className="tw-pr-4 tw-mt-4">
+        {t("network.save")}
+      </Button>
+    </Stack>
   );
 }
