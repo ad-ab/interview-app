@@ -12,7 +12,8 @@ import {
 } from "@carbon/react";
 import { Renew } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
-import { LOG_SEVERITY_OPTIONS, SAMPLE_LOG_DATA } from "@/const";
+import { LOG_SEVERITY_OPTIONS } from "@/const";
+import { MOCK_LOG_DATA } from "@/mockData";
 import { useFormat } from "@/hooks/useFormat";
 
 type SeverityOption = (typeof LOG_SEVERITY_OPTIONS)[number];
@@ -71,7 +72,7 @@ export default function LogsTable() {
   };
 
   const filteredData = useMemo(
-    () => SAMPLE_LOG_DATA.filter((row) => activeSeverities.has(row.severity)),
+    () => MOCK_LOG_DATA.filter((row) => activeSeverities.has(row.severity)),
     [activeSeverities],
   );
 

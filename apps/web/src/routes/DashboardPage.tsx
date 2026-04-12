@@ -3,72 +3,7 @@ import { useTranslation } from "react-i18next";
 import HashrateChartTile from "../components/dashboard/HashrateChartTile";
 import OverviewTile from "../components/dashboard/OverviewTile";
 import DashboardTileHeader from "../components/DashboardTileHeader";
-
-// ── Dummy data ────────────────────────────────────────────────────────────────
-const WORKERS = [
-  {
-    name: "Antminer S19 Pro #1",
-    hashrate: "24.6 TH/s",
-    temp: "71°C",
-    status: "active",
-  },
-  {
-    name: "Antminer S19 Pro #2",
-    hashrate: "23.9 TH/s",
-    temp: "73°C",
-    status: "active",
-  },
-  {
-    name: "Antminer S19 Pro #3",
-    hashrate: "24.1 TH/s",
-    temp: "70°C",
-    status: "active",
-  },
-  {
-    name: "Antminer S19    #4",
-    hashrate: "22.8 TH/s",
-    temp: "68°C",
-    status: "active",
-  },
-  {
-    name: "Antminer S19j   #5",
-    hashrate: "0.0 TH/s",
-    temp: "—",
-    status: "error",
-  },
-];
-
-const POOLS = [
-  {
-    name: "Braiins Pool",
-    share: 60,
-    accepted: "14,823",
-    rejected: "12",
-    latency: "18 ms",
-  },
-  {
-    name: "Slush Pool",
-    share: 30,
-    accepted: "7,412",
-    rejected: "8",
-    latency: "24 ms",
-  },
-  {
-    name: "F2Pool",
-    share: 10,
-    accepted: "2,471",
-    rejected: "4",
-    latency: "41 ms",
-  },
-];
-
-const EVENTS = [
-  { time: "14:32", type: "info", msg: "Pool failover: switched to Slush Pool" },
-  { time: "13:15", type: "warning", msg: "Worker #5 hashrate dropped to 0" },
-  { time: "11:40", type: "info", msg: "Firmware updated to BOS+ 23.04" },
-  { time: "09:02", type: "success", msg: "New best share submitted" },
-  { time: "08:55", type: "warning", msg: "Chip temp exceeded 75°C on board 2" },
-];
+import { MOCK_POOLS, MOCK_EVENTS } from "@/mockData";
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -82,7 +17,7 @@ function PoolsSection() {
         Mining Pools
       </p>
       <div className="tw-flex tw-flex-col tw-gap-4">
-        {POOLS.map((p) => (
+        {MOCK_POOLS.map((p) => (
           <div key={p.name}>
             <div className="tw-mb-[0.3rem] tw-flex tw-justify-between">
               <span
@@ -143,14 +78,14 @@ function EventLog() {
         Recent Events
       </p>
       <div className="tw-flex tw-flex-col ">
-        {EVENTS.map((e, i) => (
+        {MOCK_EVENTS.map((e, i) => (
           <div
             key={i}
             className="tw-grid tw-items-start tw-gap-2 tw-py-2"
             style={{
               gridTemplateColumns: "3rem 0.5rem 1fr",
               borderBottom:
-                i < EVENTS.length - 1
+                i < MOCK_EVENTS.length - 1
                   ? "1px solid var(--cds-border-subtle)"
                   : "none",
             }}
