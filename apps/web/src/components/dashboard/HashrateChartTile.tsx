@@ -24,7 +24,10 @@ function makeTooltipHTML(
 ) {
   const date = data[0]?.date ? formatTime(new Date(data[0].date)) : "";
   const rows = data
-    .map((d) => `<p style="margin:1px 0">${d.group}: <strong>${d.value} ${unitForGroup(d.group)}</strong></p>`)
+    .map(
+      (d) =>
+        `<p style="margin:1px 0">${d.group}: <strong>${d.value} ${unitForGroup(d.group)}</strong></p>`,
+    )
     .join("");
   return `<div style="padding:4px 8px"><p style="margin:0 0 4px 0;opacity:0.7;font-size:0.75rem">${date}</p>${rows}</div>`;
 }
@@ -35,97 +38,120 @@ export default function HashrateChartTile() {
   const { formatTime } = useFormat();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const chartTheme = carbonTheme === "g100" ? ChartTheme.G100 : ChartTheme.WHITE;
+  const chartTheme =
+    carbonTheme === "g100" ? ChartTheme.G100 : ChartTheme.WHITE;
 
-  const tooltipOpts = useMemo(() => ({
-    customHTML: (data: { group: string; value: number; date: string }[]) =>
-      makeTooltipHTML(data, formatTime),
-  }), [formatTime]);
+  const tooltipOpts = useMemo(
+    () => ({
+      customHTML: (data: { group: string; value: number; date: string }[]) =>
+        makeTooltipHTML(data, formatTime),
+    }),
+    [formatTime],
+  );
 
-  const timeAxisOpts = useMemo(() => ({
-    scaleType: ScaleTypes.TIME,
-    mapsTo: "date" as const,
-    ticks: {
-      formatter: (v: number | Date) =>
-        formatTime(v instanceof Date ? v : new Date(v)),
-    },
-  }), [formatTime]);
+  const timeAxisOpts = useMemo(
+    () => ({
+      scaleType: ScaleTypes.TIME,
+      mapsTo: "date" as const,
+      ticks: {
+        formatter: (v: number | Date) =>
+          formatTime(v instanceof Date ? v : new Date(v)),
+      },
+    }),
+    [formatTime],
+  );
 
-  const overallOptions = useMemo((): LineChartOptions => ({
-    axes: {
-      bottom: timeAxisOpts,
-      left: {
-        mapsTo: "value",
-        scaleType: ScaleTypes.LINEAR,
-        domain: [0, 110],
-        correspondingDatasets: ["Hashrate"],
-        ticks: { formatter: (v: number | Date) => `${+(v)}T` },
+  const overallOptions = useMemo(
+    (): LineChartOptions => ({
+      axes: {
+        bottom: timeAxisOpts,
+        left: {
+          mapsTo: "value",
+          scaleType: ScaleTypes.LINEAR,
+          domain: [0, 110],
+          correspondingDatasets: ["Hashrate"],
+          ticks: { formatter: (v: number | Date) => `${+v}T` },
+        },
+        right: {
+          mapsTo: "value",
+          scaleType: ScaleTypes.LINEAR,
+          domain: [0, 100],
+          correspondingDatasets: ["Temperature"],
+          ticks: { formatter: (v: number | Date) => `${+v}°C` },
+        },
       },
-      right: {
-        mapsTo: "value",
-        scaleType: ScaleTypes.LINEAR,
-        domain: [0, 100],
-        correspondingDatasets: ["Temperature"],
-        ticks: { formatter: (v: number | Date) => `${+(v)}°C` },
-      },
-    },
-    curve: "curveMonotoneX",
-    height: CHART_HEIGHT,
-    toolbar: { enabled: false },
-    points: { radius: 2 },
-    tooltip: tooltipOpts,
-    theme: chartTheme,
-  }), [timeAxisOpts, tooltipOpts, chartTheme]);
+      curve: "curveMonotoneX",
+      height: CHART_HEIGHT,
+      toolbar: { enabled: false },
+      points: { radius: 2 },
+      tooltip: tooltipOpts,
+      theme: chartTheme,
+    }),
+    [timeAxisOpts, tooltipOpts, chartTheme],
+  );
 
-  const hashrateOptions = useMemo((): LineChartOptions => ({
-    axes: {
-      bottom: timeAxisOpts,
-      left: {
-        mapsTo: "value",
-        scaleType: ScaleTypes.LINEAR,
-        domain: [0, 110],
-        ticks: { formatter: (v: number | Date) => `${+(v)}T` },
-        thresholds: [
-          {
-            value: MOCK_NOMINAL_HASHRATE,
-            label: `Nominal Average (${MOCK_NOMINAL_HASHRATE} TH/s)`,
-            fillColor: "var(--cds-support-warning)",
-          },
-        ],
+  const hashrateOptions = useMemo(
+    (): LineChartOptions => ({
+      axes: {
+        bottom: timeAxisOpts,
+        left: {
+          mapsTo: "value",
+          scaleType: ScaleTypes.LINEAR,
+          domain: [0, 110],
+          ticks: { formatter: (v: number | Date) => `${+v}T` },
+          thresholds: [
+            {
+              value: MOCK_NOMINAL_HASHRATE,
+              label: `${MOCK_NOMINAL_HASHRATE} TH/s`,
+              fillColor: "var(--cds-support-warning)",
+            },
+          ],
+        },
       },
-    },
-    curve: "curveMonotoneX",
-    height: CHART_HEIGHT,
-    toolbar: { enabled: false },
-    points: { radius: 2 },
-    tooltip: tooltipOpts,
-    theme: chartTheme,
-  }), [timeAxisOpts, tooltipOpts, chartTheme]);
+      curve: "curveMonotoneX",
+      height: CHART_HEIGHT,
+      toolbar: { enabled: false },
+      points: { radius: 2 },
+      tooltip: tooltipOpts,
+      theme: chartTheme,
+    }),
+    [timeAxisOpts, tooltipOpts, chartTheme],
+  );
 
-  const temperatureOptions = useMemo((): LineChartOptions => ({
-    axes: {
-      bottom: timeAxisOpts,
-      left: {
-        mapsTo: "value",
-        scaleType: ScaleTypes.LINEAR,
-        correspondingDatasets: ["1#Board", "1#Chip", "2#Board", "2#Chip", "3#Board", "3#Chip"],
-        ticks: { formatter: (v: number | Date) => `${+(v)}°C` },
+  const temperatureOptions = useMemo(
+    (): LineChartOptions => ({
+      axes: {
+        bottom: timeAxisOpts,
+        left: {
+          mapsTo: "value",
+          scaleType: ScaleTypes.LINEAR,
+          correspondingDatasets: [
+            "1#Board",
+            "1#Chip",
+            "2#Board",
+            "2#Chip",
+            "3#Board",
+            "3#Chip",
+          ],
+          ticks: { formatter: (v: number | Date) => `${+v}°C` },
+        },
+        right: {
+          mapsTo: "value",
+          scaleType: ScaleTypes.LINEAR,
+          domain: [0, 100],
+          correspondingDatasets: ["1#Fan", "2#Fan", "3#Fan"],
+          ticks: { formatter: (v: number | Date) => `${+v}%` },
+        },
       },
-      right: {
-        mapsTo: "value",
-        scaleType: ScaleTypes.LINEAR,
-        domain: [0, 100],
-        correspondingDatasets: ["1#Fan", "2#Fan", "3#Fan"],
-        ticks: { formatter: (v: number | Date) => `${+(v)}%` },
-      },
-    },
-    curve: "curveMonotoneX",
-    height: CHART_HEIGHT,
-    toolbar: { enabled: false },
-    points: { radius: 2 },
-    tooltip: tooltipOpts,
-    theme: chartTheme,
-  }), [timeAxisOpts, tooltipOpts, chartTheme]);
+      curve: "curveMonotoneX",
+      height: CHART_HEIGHT,
+      toolbar: { enabled: false },
+      points: { radius: 2 },
+      tooltip: tooltipOpts,
+      theme: chartTheme,
+    }),
+    [timeAxisOpts, tooltipOpts, chartTheme],
+  );
 
   return (
     <Tile className="tw-p-0">
@@ -149,7 +175,10 @@ export default function HashrateChartTile() {
           <LineChart data={MOCK_HASHRATE_SERIES} options={hashrateOptions} />
         )}
         {selectedIndex === 2 && (
-          <LineChart data={MOCK_TEMPERATURE_SERIES} options={temperatureOptions} />
+          <LineChart
+            data={MOCK_TEMPERATURE_SERIES}
+            options={temperatureOptions}
+          />
         )}
       </div>
     </Tile>
