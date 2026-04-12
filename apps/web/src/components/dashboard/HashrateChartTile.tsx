@@ -20,7 +20,7 @@ const TAB_KEYS = ["overall", "hashrate", "temperature"] as const;
 const FAN_GROUPS = new Set(["1#Fan", "2#Fan", "3#Fan"]);
 
 function unitForGroup(group: string): string {
-  if (group === "Hashrate" || group === "Nominal Average") return "T";
+  if (group === "Hashrate" || group === "Nominal Average") return "TH/s";
   if (group === "Temperature") return "°C";
   if (FAN_GROUPS.has(group)) return "%";
   // Board / Chip temperature series
@@ -97,7 +97,7 @@ export default function HashrateChartTile() {
         thresholds: [
           {
             value: MOCK_NOMINAL_HASHRATE,
-            label: "Nominal Average",
+            label: `Nominal Average (${MOCK_NOMINAL_HASHRATE} TH/s)`,
             fillColor: "var(--cds-support-warning)",
           },
         ],
