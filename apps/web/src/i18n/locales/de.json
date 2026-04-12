@@ -90,6 +90,7 @@
   "log": {
     "title": "Protokoll",
     "refresh": "Aktualisieren",
+    "selectSeverity": "Schweregrad wählen",
     "severity": {
       "debug": "Debug",
       "info": "Info",

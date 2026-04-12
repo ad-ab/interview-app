@@ -90,6 +90,7 @@
   "log": {
     "title": "Registro",
     "refresh": "Actualizar",
+    "selectSeverity": "Seleccionar Severidad",
     "severity": {
       "debug": "Depuración",
       "info": "Info",

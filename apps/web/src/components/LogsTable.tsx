@@ -68,25 +68,26 @@ export default function LogsTable() {
 
   return (
     <div className="tw-flex tw-flex-col tw-gap-4">
-      {/* Severity filter + refresh */}
-      <div className="tw-flex tw-items-center tw-justify-between tw-flex-wrap tw-gap-4">
-        <div style={{ minWidth: "280px" }}>
+      {/* Severity filter + refresh — right-aligned */}
+      <div className="tw-flex tw-items-center tw-justify-end" style={{ gap: "1rem" }}>
+        <div style={{ minWidth: "220px" }}>
           <MultiSelect
             id="log-severity-filter"
             titleText=""
             hideLabel
-            label={t("log.columns.severity")}
+            label={t("log.selectSeverity")}
             items={[...LOG_SEVERITY_OPTIONS]}
             itemToString={(item: SeverityOption) => t(item.labelKey)}
             selectedItems={[...selectedSeverities]}
             onChange={handleSeverityChange}
             selectionFeedback="top-after-reopen"
+            size="sm"
           />
         </div>
         <IconButton
           label={t("log.refresh")}
           kind="ghost"
-          size="md"
+          size="sm"
           onClick={handleRefresh}
         >
           <Renew />
