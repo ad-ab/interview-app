@@ -1,13 +1,82 @@
+import { LineChart } from "@carbon/charts-react";
+import { ScaleTypes } from "@carbon/charts";
+import type { LineChartOptions } from "@carbon/charts";
 import { Tab, TabList, Tabs, Tile } from "@carbon/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MOCK_CHART_DATASETS } from "@/mockData";
+import {
+  MOCK_OVERALL_SERIES,
+  MOCK_HASHRATE_SERIES,
+  MOCK_TEMPERATURE_SERIES,
+} from "@/mockData";
+
+const CHART_HEIGHT = "220px";
+
+const OVERALL_OPTIONS: LineChartOptions = {
+  axes: {
+    bottom: { scaleType: ScaleTypes.TIME, mapsTo: "date" },
+    left: {
+      title: "TH/s",
+      mapsTo: "value",
+      scaleType: ScaleTypes.LINEAR,
+      domain: [0, 110],
+      correspondingDatasets: ["Hashrate"],
+    },
+    right: {
+      title: "°C",
+      mapsTo: "value",
+      scaleType: ScaleTypes.LINEAR,
+      domain: [0, 100],
+      correspondingDatasets: ["Temperature"],
+    },
+  },
+  curve: "curveMonotoneX",
+  height: CHART_HEIGHT,
+  toolbar: { enabled: false },
+};
+
+const HASHRATE_OPTIONS: LineChartOptions = {
+  axes: {
+    bottom: { scaleType: ScaleTypes.TIME, mapsTo: "date" },
+    left: {
+      title: "TH/s",
+      mapsTo: "value",
+      scaleType: ScaleTypes.LINEAR,
+      domain: [0, 110],
+    },
+  },
+  curve: "curveMonotoneX",
+  height: CHART_HEIGHT,
+  toolbar: { enabled: false },
+};
+
+const TEMPERATURE_OPTIONS: LineChartOptions = {
+  axes: {
+    bottom: { scaleType: ScaleTypes.TIME, mapsTo: "date" },
+    left: {
+      title: "°C",
+      mapsTo: "value",
+      scaleType: ScaleTypes.LINEAR,
+      correspondingDatasets: ["1#Board", "1#Chip", "2#Board", "2#Chip", "3#Board", "3#Chip"],
+    },
+    right: {
+      title: "%",
+      mapsTo: "value",
+      scaleType: ScaleTypes.LINEAR,
+      domain: [0, 100],
+      correspondingDatasets: ["1#Fan", "2#Fan", "3#Fan"],
+    },
+  },
+  curve: "curveMonotoneX",
+  height: CHART_HEIGHT,
+  toolbar: { enabled: false },
+};
+
+const TAB_KEYS = ["overall", "hashrate", "temperature"] as const;
 
 export default function HashrateChartTile() {
   const { t } = useTranslation();
-  const [selectedIndex, setSelectedIndex] = useState(1);
-  const dataset = MOCK_CHART_DATASETS[selectedIndex];
-  const max = Math.max(...dataset.bars);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
     <Tile className="tw-p-0">
@@ -17,47 +86,22 @@ export default function HashrateChartTile() {
           onChange={({ selectedIndex: i }) => setSelectedIndex(i)}
         >
           <TabList aria-label={t("chart.tabs.ariaLabel")}>
-            {MOCK_CHART_DATASETS.map((d) => (
-              <Tab key={d.key}>{t(`chart.tabs.${d.key}`)}</Tab>
+            {TAB_KEYS.map((key) => (
+              <Tab key={key}>{t(`chart.tabs.${key}`)}</Tab>
             ))}
           </TabList>
         </Tabs>
       </div>
-      <div className="tw-p-5">
-        <div className="tw-mt-4 tw-flex tw-h-[170px] tw-items-end tw-gap-1">
-          {dataset.bars.map((v, i) => (
-            <div
-              key={i}
-              title={`${v} ${dataset.unit}`}
-              className="tw-min-w-0 tw-flex-1 tw-rounded-t-1 tw-transition-opacity tw-duration-200"
-              style={{
-                height: `${(v / max) * 100}%`,
-                backgroundColor: "var(--cds-interactive)",
-                opacity: 0.7 + (i / dataset.bars.length) * 0.3,
-              }}
-            />
-          ))}
-        </div>
-        <div className="tw-mt-2 tw-flex tw-justify-between">
-          <span
-            className="tw-text-xs"
-            style={{ color: "var(--cds-text-placeholder)" }}
-          >
-            00:00
-          </span>
-          <span
-            className="tw-text-xs"
-            style={{ color: "var(--cds-text-placeholder)" }}
-          >
-            12:00
-          </span>
-          <span
-            className="tw-text-xs"
-            style={{ color: "var(--cds-text-placeholder)" }}
-          >
-            Now
-          </span>
-        </div>
+      <div className="tw-p-4">
+        {selectedIndex === 0 && (
+          <LineChart data={MOCK_OVERALL_SERIES} options={OVERALL_OPTIONS} />
+        )}
+        {selectedIndex === 1 && (
+          <LineChart data={MOCK_HASHRATE_SERIES} options={HASHRATE_OPTIONS} />
+        )}
+        {selectedIndex === 2 && (
+          <LineChart data={MOCK_TEMPERATURE_SERIES} options={TEMPERATURE_OPTIONS} />
+        )}
       </div>
     </Tile>
   );
