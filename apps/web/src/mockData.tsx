@@ -84,7 +84,6 @@ export const MOCK_HASHRATE_SERIES: ChartDataPoint[] = [
        94, 93, 95, 97, 96, 94, 95, 93, 92, 91, 90, 89] as number[]).map(
     (value, i) => ({ group: "Hashrate", date: HOURS[i], value })
   ),
-  ...HOURS.map((date) => ({ group: "Nominal Average", date, value: MOCK_NOMINAL_HASHRATE })),
 ];
 
 /**
