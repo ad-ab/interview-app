@@ -1,4 +1,4 @@
-import { LogSeverity, type LogEntry } from "@/types";
+import { LogSeverity, type LogEntry, type PoolGroup } from "@/types";
 
 // ── Dashboard — DashboardPage ────────────────────────────────────────────────
 
@@ -224,5 +224,36 @@ export const MOCK_LOG_DATA: readonly LogEntry[] = [
     name: "System",
     description: "Emergency shutdown triggered — overtemp",
     severity: LogSeverity.FATAL,
+  },
+];
+
+// ── Configuration — Pools page ──────────────────────────────────────────────
+
+export const MOCK_POOL_GROUPS: readonly PoolGroup[] = [
+  {
+    name: "Default",
+    pools: [
+      {
+        id: "1",
+        enabled: true,
+        url: "stratum+tcp://pool.braiins.com:3333",
+        username: "worker1.miner01",
+        password: "x",
+      },
+      {
+        id: "2",
+        enabled: true,
+        url: "stratum+tcp://pool.slushpool.com:3333",
+        username: "worker1.backup",
+        password: "x",
+      },
+      {
+        id: "3",
+        enabled: false,
+        url: "stratum+ssl://f2pool.com:6688",
+        username: "myworker",
+        password: "x",
+      },
+    ],
   },
 ];

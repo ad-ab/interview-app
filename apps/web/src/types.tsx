@@ -53,3 +53,18 @@ export interface LogEntry {
   description: string;
   severity: LogSeverity;
 }
+
+/** A single mining pool connection. */
+export interface PoolConfig {
+  id: string;
+  enabled: boolean;
+  url: string;
+  username: string;
+  password: string;
+}
+
+/** A named group of pool connections. */
+export interface PoolGroup {
+  name: string;
+  pools: PoolConfig[];
+}
