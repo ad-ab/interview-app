@@ -125,24 +125,24 @@ export default function LogsTable() {
       headers={headers}
       isSortable
       sortRow={(
-        a: Record<string, string>,
-        b: Record<string, string>,
+        a: string,
+        b: string,
         { sortDirection, key }: { sortDirection: string; key: string },
       ) => {
         const dir = sortDirection === "ASC" ? 1 : -1;
         if (key === "severity") {
           return (
             dir *
-            (SEVERITY_ORDER[a[key] as LogSeverity] -
-              SEVERITY_ORDER[b[key] as LogSeverity])
+            (SEVERITY_ORDER[a as LogSeverity] -
+              SEVERITY_ORDER[b as LogSeverity])
           );
         }
         if (key === "time") {
           return (
-            dir * (new Date(a[key]).getTime() - new Date(b[key]).getTime())
+            dir * (new Date(a).getTime() - new Date(b).getTime())
           );
         }
-        return dir * a[key].localeCompare(b[key]);
+        return dir * a.localeCompare(b);
       }}
     >
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
