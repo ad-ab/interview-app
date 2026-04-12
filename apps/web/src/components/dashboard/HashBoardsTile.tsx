@@ -10,23 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import TileTitle from "@/components/TileTitle";
 import { UNITS } from "@/types";
-
-interface BoardRow {
-  id: number;
-  hashrate: number;
-  voltage: number;
-  boardTemp: number;
-  chipTemp: number;
-  freq: number;
-  asic: number;
-  hwErr: number;
-}
-
-const BOARD_ROWS: BoardRow[] = [
-  { id: 1, hashrate: 24.83, voltage: 12.40, boardTemp: 68, chipTemp: 78, freq: 650.0, asic: 108, hwErr: 0.0 },
-  { id: 2, hashrate: 31.47, voltage: 12.38, boardTemp: 72, chipTemp: 84, freq: 725.5, asic: 108, hwErr: 0.0 },
-  { id: 3, hashrate: 18.92, voltage: 12.35, boardTemp: 61, chipTemp: 74, freq: 562.5, asic: 108, hwErr: 0.0 },
-];
+import { MOCK_HASH_BOARDS } from "@/mockData";
 
 export default function HashBoardsTile() {
   const { t } = useTranslation();
@@ -54,7 +38,7 @@ export default function HashBoardsTile() {
           </TableRow>
         </TableHead>
         <TableBody className="tw-bg-transparent">
-          {BOARD_ROWS.map((row) => (
+          {MOCK_HASH_BOARDS.map((row) => (
             <TableRow key={row.id} className="tw-bg-transparent">
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.hashrate.toFixed(2)} {UNITS.HASHRATE}</TableCell>

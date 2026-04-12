@@ -69,6 +69,18 @@ export interface PoolGroup {
   pools: PoolConfig[];
 }
 
+/** A single hash board row in the Hash Boards table. */
+export interface BoardRow {
+  id: number;
+  hashrate: number;
+  voltage: number;
+  boardTemp: number;
+  chipTemp: number;
+  freq: number;
+  asic: number;
+  hwErr: number;
+}
+
 /** Unit strings for miner metric display. */
 export enum UNITS {
   TEMPERATURE = "°C",

@@ -1,6 +1,12 @@
-import { LogSeverity, type LogEntry, type PoolGroup } from "@/types";
+import { LogSeverity, type BoardRow, type LogEntry, type PoolGroup } from "@/types";
 
 // ── Dashboard — DashboardPage ────────────────────────────────────────────────
+
+export const MOCK_HASH_BOARDS: readonly BoardRow[] = [
+  { id: 1, hashrate: 24.83, voltage: 12.40, boardTemp: 68, chipTemp: 78, freq: 650.0, asic: 108, hwErr: 0.0 },
+  { id: 2, hashrate: 31.47, voltage: 12.38, boardTemp: 72, chipTemp: 84, freq: 725.5, asic: 108, hwErr: 0.0 },
+  { id: 3, hashrate: 18.92, voltage: 12.35, boardTemp: 61, chipTemp: 74, freq: 562.5, asic: 108, hwErr: 0.0 },
+];
 
 export const MOCK_WORKERS = [
   {
