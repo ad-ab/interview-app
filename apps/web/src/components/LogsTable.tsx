@@ -14,11 +14,13 @@ import { Renew } from "@carbon/icons-react";
 import { useTranslation } from "react-i18next";
 import { LogSeverity } from "@/types";
 import { LOG_SEVERITY_OPTIONS, SAMPLE_LOG_DATA } from "@/const";
+import { useFormat } from "@/hooks/useFormat";
 
 const ALL_SEVERITIES = LOG_SEVERITY_OPTIONS.map((o) => o.value);
 
 export default function LogsTable() {
   const { t } = useTranslation();
+  const { formatDateTime } = useFormat();
 
   // Multi-select severity filter — all ON by default.
   const [activeSeverities, setActiveSeverities] = useState<Set<LogSeverity>>(
@@ -97,7 +99,16 @@ export default function LogsTable() {
         <TableHead>
           <TableRow>
             {columns.map((col) => (
-              <TableHeader key={col.key}>{col.header}</TableHeader>
+              <TableHeader
+                key={col.key}
+                style={
+                  col.key === "time"
+                    ? { width: "180px", minWidth: "180px" }
+                    : undefined
+                }
+              >
+                {col.header}
+              </TableHeader>
             ))}
           </TableRow>
         </TableHead>
@@ -105,7 +116,18 @@ export default function LogsTable() {
           {paginatedData.map((row) => (
             <TableRow key={row.id}>
               {columns.map((col) => (
-                <TableCell key={col.key}>{row[col.key]}</TableCell>
+                <TableCell
+                  key={col.key}
+                  style={
+                    col.key === "time"
+                      ? { width: "180px", minWidth: "180px", whiteSpace: "nowrap" }
+                      : undefined
+                  }
+                >
+                  {col.key === "time"
+                    ? formatDateTime(new Date(row.time))
+                    : row[col.key]}
+                </TableCell>
               ))}
             </TableRow>
           ))}
