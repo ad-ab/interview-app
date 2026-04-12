@@ -1,15 +1,9 @@
 import { useFormat } from "@/hooks/useFormat";
 import { Tile } from "@carbon/react";
 import { useTranslation } from "react-i18next";
+import { MOCK_FANS } from "@/mockData";
 
 const CONFIRMATION_GREEN = "#42be65";
-
-const FANS = [
-  { id: "FAN1", rpm: 4200, pct: 72 },
-  { id: "FAN2", rpm: 4350, pct: 75 },
-  { id: "FAN3", rpm: 4100, pct: 70 },
-  { id: "FAN4", rpm: 4280, pct: 73 },
-];
 
 const enum UNITS {
   TEMPERATURE = "°C",
@@ -70,7 +64,7 @@ function FanSection() {
         {t("overview.fanMonitor")}
       </p>
       <div className="tw-flex tw-flex-col tw-gap-3">
-        {FANS.map((f) => (
+        {MOCK_FANS.map((f) => (
           <div key={f.id}>
             <div className="tw-mb-1 tw-flex tw-justify-between">
               <span

@@ -86,5 +86,24 @@
       "hashrate": "Hashrate",
       "temperature": "Temperatur"
     }
+  },
+  "log": {
+    "title": "Protokoll",
+    "refresh": "Aktualisieren",
+    "selectSeverity": "Schweregrad wählen",
+    "selectAll": "Alle",
+    "severity": {
+      "debug": "Debug",
+      "info": "Info",
+      "warn": "Warnung",
+      "error": "Fehler",
+      "fatal": "Kritisch"
+    },
+    "columns": {
+      "time": "Zeit",
+      "name": "Name",
+      "description": "Beschreibung",
+      "severity": "Schweregrad"
+    }
   }
 }

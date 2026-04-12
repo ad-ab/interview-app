@@ -86,5 +86,24 @@
       "hashrate": "Tasa de hash",
       "temperature": "Temperatura"
     }
+  },
+  "log": {
+    "title": "Registro",
+    "refresh": "Actualizar",
+    "selectSeverity": "Seleccionar Severidad",
+    "selectAll": "Todos",
+    "severity": {
+      "debug": "Depuración",
+      "info": "Info",
+      "warn": "Advertencia",
+      "error": "Error",
+      "fatal": "Fatal"
+    },
+    "columns": {
+      "time": "Hora",
+      "name": "Nombre",
+      "description": "Descripción",
+      "severity": "Severidad"
+    }
   }
 }

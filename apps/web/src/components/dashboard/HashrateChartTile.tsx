@@ -1,50 +1,12 @@
 import { Tab, TabList, Tabs, Tile } from "@carbon/react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
-const HASHRATE_BARS = [
-  68, 72, 75, 80, 78, 82, 85, 88, 84, 87, 90, 92, 89, 91, 94, 93, 95, 96, 94,
-  97, 95, 94, 96, 95,
-];
-
-const OVERALL_BARS = [
-  65, 68, 70, 72, 75, 78, 80, 82, 80, 83, 85, 87, 85, 86, 88, 89, 90, 91, 90,
-  92, 91, 90, 92, 91,
-];
-
-const TEMPERATURE_BARS = [
-  62, 63, 65, 66, 67, 68, 70, 71, 72, 73, 72, 73, 74, 73, 72, 71, 70, 71, 72,
-  73, 74, 73, 72, 71,
-];
-
-const DATASETS = [
-  {
-    key: "overall",
-    bars: OVERALL_BARS,
-    avg: "83.4",
-    peak: "92.0",
-    unit: "%",
-  },
-  {
-    key: "hashrate",
-    bars: HASHRATE_BARS,
-    avg: "88.7",
-    peak: "97.2",
-    unit: "TH/s",
-  },
-  {
-    key: "temperature",
-    bars: TEMPERATURE_BARS,
-    avg: "70.1",
-    peak: "74.0",
-    unit: "°C",
-  },
-] as const;
+import { MOCK_CHART_DATASETS } from "@/mockData";
 
 export default function HashrateChartTile() {
   const { t } = useTranslation();
   const [selectedIndex, setSelectedIndex] = useState(1);
-  const dataset = DATASETS[selectedIndex];
+  const dataset = MOCK_CHART_DATASETS[selectedIndex];
   const max = Math.max(...dataset.bars);
 
   return (
@@ -55,7 +17,7 @@ export default function HashrateChartTile() {
           onChange={({ selectedIndex: i }) => setSelectedIndex(i)}
         >
           <TabList aria-label={t("chart.tabs.ariaLabel")}>
-            {DATASETS.map((d) => (
+            {MOCK_CHART_DATASETS.map((d) => (
               <Tab key={d.key}>{t(`chart.tabs.${d.key}`)}</Tab>
             ))}
           </TabList>

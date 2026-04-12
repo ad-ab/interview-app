@@ -35,3 +35,21 @@ export interface NetworkStaticConfig {
   gateway: string;
   dns: string;
 }
+
+/** Log severity levels for the System → Log page. */
+export enum LogSeverity {
+  DEBUG = "debug",
+  INFO = "info",
+  WARN = "warn",
+  ERROR = "error",
+  FATAL = "fatal",
+}
+
+/** A single log entry displayed in the LogsTable. */
+export interface LogEntry {
+  id: string;
+  time: string;
+  name: string;
+  description: string;
+  severity: LogSeverity;
+}

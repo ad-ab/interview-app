@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { formatDate, formatNumber } from '../i18n/format'
+import { formatDate, formatDateTime, formatNumber } from '../i18n/format'
 
 const LANGUAGE_TO_LOCALE: Record<string, string> = {
   en: 'en-US',
@@ -26,6 +26,12 @@ export function useFormat() {
     [locale],
   )
 
+  const formatDateTimeLocalized = useCallback(
+    (date: Date, options?: Intl.DateTimeFormatOptions) =>
+      formatDateTime(date, locale, options),
+    [locale],
+  )
+
   const formatNumberLocalized = useCallback(
     (value: number, options?: Intl.NumberFormatOptions) =>
       formatNumber(value, locale, options),
@@ -35,6 +41,7 @@ export function useFormat() {
   return {
     locale,
     formatDate: formatDateLocalized,
+    formatDateTime: formatDateTimeLocalized,
     formatNumber: formatNumberLocalized,
   }
 }
