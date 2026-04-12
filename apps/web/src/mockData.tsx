@@ -35,38 +35,6 @@ export const MOCK_WORKERS = [
   },
 ];
 
-export const MOCK_POOLS = [
-  {
-    name: "Braiins Pool",
-    share: 60,
-    accepted: "14,823",
-    rejected: "12",
-    latency: "18 ms",
-  },
-  {
-    name: "Slush Pool",
-    share: 30,
-    accepted: "7,412",
-    rejected: "8",
-    latency: "24 ms",
-  },
-  {
-    name: "F2Pool",
-    share: 10,
-    accepted: "2,471",
-    rejected: "4",
-    latency: "41 ms",
-  },
-];
-
-export const MOCK_EVENTS = [
-  { time: "14:32", type: "info", msg: "Pool failover: switched to Slush Pool" },
-  { time: "13:15", type: "warning", msg: "Worker #5 hashrate dropped to 0" },
-  { time: "11:40", type: "info", msg: "Firmware updated to BOS+ 23.04" },
-  { time: "09:02", type: "success", msg: "New best share submitted" },
-  { time: "08:55", type: "warning", msg: "Chip temp exceeded 75°C on board 2" },
-];
-
 // ── Dashboard — OverviewTile ─────────────────────────────────────────────────
 
 export const MOCK_FANS = [
