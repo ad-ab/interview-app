@@ -1,9 +1,9 @@
 import { Grid, Column } from "@carbon/react";
 import { useTranslation } from "react-i18next";
-import HashrateChartTile from "../components/dashboard/HashrateChartTile";
-import OverviewTile from "../components/dashboard/OverviewTile";
-import HashBoardsTile from "../components/dashboard/HashBoardsTile";
-import DashboardTileHeader from "../components/DashboardTileHeader";
+import HashrateChartTile from "@/components/dashboard/HashrateChartTile";
+import OverviewTile from "@/components/dashboard/OverviewTile";
+import HashBoardsTile from "@/components/dashboard/HashBoardsTile";
+import DashboardTileHeader from "@/components/DashboardTileHeader";
 
 export default function DashboardPage() {
   const { t } = useTranslation();
