@@ -168,7 +168,7 @@ export default function PoolsTable({
               <TableCell>
                 <div className="tw-flex tw-items-center">
                   <IconButton
-                    label="Move up"
+                    label={t("pools.moveUp")}
                     kind="ghost"
                     size="sm"
                     disabled={isFirst}
@@ -177,7 +177,7 @@ export default function PoolsTable({
                     <ArrowUp />
                   </IconButton>
                   <IconButton
-                    label="Move down"
+                    label={t("pools.moveDown")}
                     kind="ghost"
                     size="sm"
                     disabled={isLast}
@@ -187,7 +187,7 @@ export default function PoolsTable({
                   </IconButton>
                   {pools.length > 1 && (
                     <IconButton
-                      label="Delete"
+                      label={t("pools.delete")}
                       kind="ghost"
                       size="sm"
                       className="tw-ml-4"

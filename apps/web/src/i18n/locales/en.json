@@ -120,6 +120,9 @@
     "validation": {
       "invalidUrl": "Must start with stratum+tcp:// or stratum+ssl://"
     },
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "delete": "Delete",
     "deleteConfirm": "Are you sure you want to remove this pool?",
     "deleteYes": "Yes",
     "deleteNo": "No"
