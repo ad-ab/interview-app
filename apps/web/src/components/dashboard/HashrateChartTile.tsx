@@ -17,13 +17,23 @@ const CHART_HEIGHT = "320px";
 
 const TAB_KEYS = ["overall", "hashrate", "temperature"] as const;
 
+const FAN_GROUPS = new Set(["1#Fan", "2#Fan", "3#Fan"]);
+
+function unitForGroup(group: string): string {
+  if (group === "Hashrate" || group === "Nominal Average") return "T";
+  if (group === "Temperature") return "°C";
+  if (FAN_GROUPS.has(group)) return "%";
+  // Board / Chip temperature series
+  return "°C";
+}
+
 function makeTooltipHTML(
   data: { group: string; value: number; date: string }[],
   formatTime: (d: Date) => string,
 ) {
   const date = data[0]?.date ? formatTime(new Date(data[0].date)) : "";
   const rows = data
-    .map((d) => `<p style="margin:1px 0">${d.group}: <strong>${d.value}</strong></p>`)
+    .map((d) => `<p style="margin:1px 0">${d.group}: <strong>${d.value} ${unitForGroup(d.group)}</strong></p>`)
     .join("");
   return `<div style="padding:4px 8px"><p style="margin:0 0 4px 0;opacity:0.7;font-size:0.75rem">${date}</p>${rows}</div>`;
 }
