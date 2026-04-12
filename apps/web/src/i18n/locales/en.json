@@ -90,6 +90,7 @@
   "log": {
     "title": "Log",
     "refresh": "Refresh",
+    "search": "Search logs...",
     "selectSeverity": "Select Severity",
     "selectAll": "All",
     "severity": {

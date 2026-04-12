@@ -90,6 +90,7 @@
   "log": {
     "title": "Protokoll",
     "refresh": "Aktualisieren",
+    "search": "Protokolle durchsuchen...",
     "selectSeverity": "Schweregrad wählen",
     "selectAll": "Alle",
     "severity": {

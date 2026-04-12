@@ -90,6 +90,7 @@
   "log": {
     "title": "Registro",
     "refresh": "Actualizar",
+    "search": "Buscar registros...",
     "selectSeverity": "Seleccionar Severidad",
     "selectAll": "Todos",
     "severity": {
