@@ -91,6 +91,9 @@
     "title": "Log",
     "refresh": "Refresh",
     "search": "Search logs...",
+    "filterSeverity": "Filter severity",
+    "filterApply": "Apply",
+    "filterReset": "Reset",
     "selectSeverity": "Select Severity",
     "selectAll": "All",
     "severity": {
@@ -105,6 +108,14 @@
       "name": "Name",
       "description": "Description",
       "severity": "Severity"
+    },
+    "pagination": {
+      "itemsPerPage": "Items per page:",
+      "itemRange": "{{min}}–{{max}} of {{total}} items",
+      "pageRange": "of {{total}} pages",
+      "pageRangeOne": "of 1 page",
+      "backwardText": "Previous page",
+      "forwardText": "Next page"
     }
   },
   "pools": {

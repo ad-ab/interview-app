@@ -7,7 +7,7 @@ export default function LogPage() {
   const { t } = useTranslation();
 
   return (
-    <Stack gap="1">
+    <Stack gap="1" className="tw-w-full tw-min-w-0">
       <PageTitle>{t("log.title")}</PageTitle>
       <LogsTable />
     </Stack>

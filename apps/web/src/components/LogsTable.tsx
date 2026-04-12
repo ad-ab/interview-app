@@ -1,9 +1,12 @@
 import { useMemo, useState } from "react";
 import {
+  Button,
+  Checkbox,
   DataTable,
   IconButton,
-  MultiSelect,
   Pagination,
+  Popover,
+  PopoverContent,
   Table,
   TableBody,
   TableCell,
@@ -15,31 +18,16 @@ import {
   TableToolbarContent,
   TableToolbarSearch,
 } from "@carbon/react";
-import { Renew } from "@carbon/react/icons";
+import { Filter, Renew } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
 import { LOG_SEVERITY_OPTIONS } from "@/const";
 import { MOCK_LOG_DATA } from "@/mockData";
 import { useFormat } from "@/hooks/useFormat";
 import type { LogSeverity } from "@/types";
 
-type SeverityOption = (typeof LOG_SEVERITY_OPTIONS)[number];
-
-interface SelectAllItem {
-  isSelectAll: true;
-  labelKey: string;
-}
-
-type MultiSelectItem = SeverityOption | SelectAllItem;
-
-const SELECT_ALL_ITEM: SelectAllItem = {
-  isSelectAll: true,
-  labelKey: "log.selectAll",
-};
-
-const MULTISELECT_ITEMS: MultiSelectItem[] = [
-  SELECT_ALL_ITEM,
-  ...LOG_SEVERITY_OPTIONS,
-];
+const ALL_SEVERITIES = new Set<LogSeverity>(
+  LOG_SEVERITY_OPTIONS.map((o) => o.value),
+);
 
 const SEVERITY_ORDER: Record<LogSeverity, number> = {
   debug: 0,
@@ -53,30 +41,38 @@ export default function LogsTable() {
   const { t } = useTranslation();
   const { formatDateTime } = useFormat();
 
-  const [selectedItems, setSelectedItems] = useState<MultiSelectItem[]>([
-    ...MULTISELECT_ITEMS,
-  ]);
+  const [activeSeverities, setActiveSeverities] =
+    useState<Set<LogSeverity>>(ALL_SEVERITIES);
+  const [pendingSeverities, setPendingSeverities] =
+    useState<Set<LogSeverity>>(ALL_SEVERITIES);
+  const [filterOpen, setFilterOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
-  const activeSeverities = useMemo(
-    () =>
-      new Set(
-        selectedItems
-          .filter((item): item is SeverityOption => !("isSelectAll" in item))
-          .map((s) => s.value),
-      ),
-    [selectedItems],
-  );
-
-  const handleSeverityChange = ({
-    selectedItems: newItems,
-  }: {
-    selectedItems: MultiSelectItem[];
-  }) => {
-    setSelectedItems(newItems);
+  const handleApplyFilter = () => {
+    setActiveSeverities(new Set(pendingSeverities));
+    setFilterOpen(false);
     setPage(1);
+  };
+
+  const handleResetFilter = () => {
+    setPendingSeverities(ALL_SEVERITIES);
+    setActiveSeverities(ALL_SEVERITIES);
+    setFilterOpen(false);
+    setPage(1);
+  };
+
+  const handleCheckboxChange = (severity: LogSeverity, checked: boolean) => {
+    setPendingSeverities((prev) => {
+      const next = new Set(prev);
+      if (checked) {
+        next.add(severity);
+      } else {
+        next.delete(severity);
+      }
+      return next;
+    });
   };
 
   const handleRefresh = () => {
@@ -121,6 +117,8 @@ export default function LogsTable() {
     [filteredData],
   );
 
+  const isFiltered = activeSeverities.size < ALL_SEVERITIES.size;
+
   return (
     <DataTable
       rows={rows}
@@ -141,8 +139,7 @@ export default function LogsTable() {
         }
         if (key === "time") {
           return (
-            dir *
-            (new Date(a[key]).getTime() - new Date(b[key]).getTime())
+            dir * (new Date(a[key]).getTime() - new Date(b[key]).getTime())
           );
         }
         return dir * a[key].localeCompare(b[key]);
@@ -167,31 +164,74 @@ export default function LogsTable() {
             <TableToolbar>
               <TableToolbarContent>
                 <TableToolbarSearch
+                  expanded
                   onChange={(_e: unknown, newValue?: string) => {
                     setSearchText(newValue ?? "");
                     setPage(1);
                   }}
                   placeholder={t("log.search")}
-                  persistent
                 />
-                <div style={{ minWidth: "220px" }}>
-                  <MultiSelect
-                    id="log-severity-filter"
-                    titleText=""
-                    hideLabel
-                    label={t("log.selectSeverity")}
-                    items={MULTISELECT_ITEMS}
-                    itemToString={(item: MultiSelectItem) => t(item.labelKey)}
-                    selectedItems={selectedItems}
-                    onChange={handleSeverityChange}
-                    selectionFeedback="top-after-reopen"
-                    size="sm"
-                  />
-                </div>
+                <Popover
+                  open={filterOpen}
+                  align="bottom-end"
+                  onRequestClose={() => {
+                    setFilterOpen(false);
+                    setPendingSeverities(new Set(activeSeverities));
+                  }}
+                  isTabTip
+                >
+                  <IconButton
+                    label={t("log.filterSeverity")}
+                    kind="ghost"
+                    onClick={() => {
+                      setPendingSeverities(new Set(activeSeverities));
+                      setFilterOpen((prev) => !prev);
+                    }}
+                    className={isFiltered ? "tw-text-blue-500" : undefined}
+                  >
+                    <Filter />
+                  </IconButton>
+                  <PopoverContent>
+                    <div className="tw-p-4 tw-flex tw-flex-col tw-gap-2">
+                      <fieldset className="tw-border-0 tw-p-0 tw-m-0">
+                        <legend className="tw-sr-only">
+                          {t("log.filterSeverity")}
+                        </legend>
+                        {LOG_SEVERITY_OPTIONS.map((opt) => (
+                          <Checkbox
+                            key={opt.value}
+                            id={`log-filter-${opt.value}`}
+                            labelText={t(opt.labelKey)}
+                            checked={pendingSeverities.has(opt.value)}
+                            onChange={(
+                              _: unknown,
+                              { checked }: { checked: boolean },
+                            ) => handleCheckboxChange(opt.value, checked)}
+                          />
+                        ))}
+                      </fieldset>
+                      <div className="tw-flex tw-justify-end tw-gap-2 tw-mt-2">
+                        <Button
+                          kind="secondary"
+                          size="sm"
+                          onClick={handleResetFilter}
+                        >
+                          {t("log.filterReset")}
+                        </Button>
+                        <Button
+                          kind="primary"
+                          size="sm"
+                          onClick={handleApplyFilter}
+                        >
+                          {t("log.filterApply")}
+                        </Button>
+                      </div>
+                    </div>
+                  </PopoverContent>
+                </Popover>
                 <IconButton
                   label={t("log.refresh")}
                   kind="ghost"
-                  size="sm"
                   onClick={handleRefresh}
                 >
                   <Renew />
@@ -202,48 +242,69 @@ export default function LogsTable() {
             <Table {...getTableProps()}>
               <TableHead>
                 <TableRow>
-                  {dtHeaders.map((header: { key: string; header: string; isSortable: boolean }) => {
-                    const props = getHeaderProps({ header });
-                    return (
-                      <TableHeader
-                        key={header.key}
-                        {...props}
-                        isSortable={header.isSortable}
-                        style={
-                          header.key === "time"
-                            ? { width: "180px", minWidth: "180px" }
-                            : undefined
-                        }
-                      >
-                        {header.header}
-                      </TableHeader>
-                    );
-                  })}
+                  {dtHeaders.map(
+                    (header: {
+                      key: string;
+                      header: string;
+                      isSortable: boolean;
+                    }) => {
+                      const props = getHeaderProps({ header });
+                      return (
+                        <TableHeader
+                          key={header.key}
+                          {...props}
+                          isSortable={header.isSortable}
+                          style={
+                            header.key === "time"
+                              ? { width: "180px", minWidth: "180px" }
+                              : undefined
+                          }
+                        >
+                          {header.header}
+                        </TableHeader>
+                      );
+                    },
+                  )}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {paginatedRows.map((row: { id: string; cells: Array<{ id: string; value: string; info: { header: string } }> }) => (
-                  <TableRow key={row.id} {...getRowProps({ row })}>
-                    {row.cells.map((cell: { id: string; value: string; info: { header: string } }) => (
-                      <TableCell
-                        key={cell.id}
-                        style={
-                          cell.info.header === "time"
-                            ? {
-                                width: "180px",
-                                minWidth: "180px",
-                                whiteSpace: "nowrap",
-                              }
-                            : undefined
-                        }
-                      >
-                        {cell.info.header === "time"
-                          ? formatDateTime(new Date(cell.value))
-                          : cell.value}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
+                {paginatedRows.map(
+                  (row: {
+                    id: string;
+                    cells: Array<{
+                      id: string;
+                      value: string;
+                      info: { header: string };
+                    }>;
+                  }) => (
+                    <TableRow key={row.id} {...getRowProps({ row })}>
+                      {row.cells.map(
+                        (cell: {
+                          id: string;
+                          value: string;
+                          info: { header: string };
+                        }) => (
+                          <TableCell
+                            key={cell.id}
+                            style={
+                              cell.info.header === "time"
+                                ? {
+                                    width: "180px",
+                                    minWidth: "180px",
+                                    whiteSpace: "nowrap",
+                                  }
+                                : undefined
+                            }
+                          >
+                            {cell.info.header === "time"
+                              ? formatDateTime(new Date(cell.value))
+                              : cell.value}
+                          </TableCell>
+                        ),
+                      )}
+                    </TableRow>
+                  ),
+                )}
               </TableBody>
             </Table>
 
@@ -252,6 +313,17 @@ export default function LogsTable() {
               pageSize={pageSize}
               page={page}
               pageSizes={[5, 10, 15]}
+              itemsPerPageText={t("log.pagination.itemsPerPage")}
+              itemRangeText={(min: number, max: number, total: number) =>
+                t("log.pagination.itemRange", { min, max, total })
+              }
+              pageRangeText={(_current: number, total: number) =>
+                total === 1
+                  ? t("log.pagination.pageRangeOne")
+                  : t("log.pagination.pageRange", { total })
+              }
+              backwardText={t("log.pagination.backwardText")}
+              forwardText={t("log.pagination.forwardText")}
               onChange={({
                 page: newPage,
                 pageSize: newSize,
