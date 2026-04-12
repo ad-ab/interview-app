@@ -45,7 +45,8 @@ jobs:
         run: pnpm install
 
       - name: Run the build
-        run: pnpm run build
+        # run: pnpm run build -- BE not being deployed at the moment
+        run: pnpm run build:frontend
         env:
           VITE_BASE_URL: /${{ github.event.repository.name }}/
 
