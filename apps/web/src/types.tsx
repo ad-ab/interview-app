@@ -68,3 +68,40 @@ export interface PoolGroup {
   name: string;
   pools: PoolConfig[];
 }
+
+/** Unit strings for miner metric display. */
+export enum UNITS {
+  TEMPERATURE = "°C",
+  HASHRATE = "TH/s",
+  EFFICIENCY = "W/THs",
+  POWER = "kW",
+  RPM = "RPM",
+  VOLTAGE = "V",
+  FREQUENCY = "MHz",
+  HASHRATEERRORS = "H/s",
+}
+
+/** Pool connection health status. */
+export enum POOL_STATUS {
+  ALIVE = "alive",
+  DEAD = "dead",
+  DEGRADED = "degraded",
+}
+
+/** Auto-tuner operational status. */
+export enum TUNER_STATUS {
+  STABLE = "stable",
+  UNSTABLE = "unstable",
+  ERROR = "error",
+}
+
+/** Metric label keys for the Overview tile. */
+export enum METRIC_LABEL {
+  REAL_HASHRATE = "realHashrate",
+  TEMPERATURE = "temperature",
+  EFFICIENCY = "efficiency",
+  POWER = "power",
+  DPS = "dps",
+  POOL_STATUS = "poolStatus",
+  TUNER_STATUS = "tunerStatus",
+}
