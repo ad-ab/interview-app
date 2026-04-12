@@ -7,6 +7,7 @@ import {
   TableRow,
   Tile,
 } from "@carbon/react";
+import { useTranslation } from "react-i18next";
 import TileTitle from "@/components/TileTitle";
 import { UNITS } from "@/types";
 
@@ -27,25 +28,27 @@ const BOARD_ROWS: BoardRow[] = [
   { id: 3, hashrate: 18.92, voltage: 12.35, boardTemp: 61, chipTemp: 74, freq: 562.5, asic: 108, hwErr: 0.0 },
 ];
 
-const HEADERS = [
-  { key: "id",        header: "ID"                 },
-  { key: "hashrate",  header: "Real Hashrate"       },
-  { key: "voltage",   header: "Voltage"             },
-  { key: "boardTemp", header: "Board Temp"          },
-  { key: "chipTemp",  header: "Chip Temp"           },
-  { key: "freq",      header: "Frequency"           },
-  { key: "asic",      header: "ASIC#"               },
-  { key: "hwErr",     header: "HW Error Hashrate"   },
-];
-
 export default function HashBoardsTile() {
+  const { t } = useTranslation();
+
+  const headers = [
+    { key: "id",        header: t("dashboard.hashBoards.col.id")              },
+    { key: "hashrate",  header: t("dashboard.hashBoards.col.realHashrate")    },
+    { key: "voltage",   header: t("dashboard.hashBoards.col.voltage")         },
+    { key: "boardTemp", header: t("dashboard.hashBoards.col.boardTemp")       },
+    { key: "chipTemp",  header: t("dashboard.hashBoards.col.chipTemp")        },
+    { key: "freq",      header: t("dashboard.hashBoards.col.frequency")       },
+    { key: "asic",      header: t("dashboard.hashBoards.col.asic")            },
+    { key: "hwErr",     header: t("dashboard.hashBoards.col.hwErrorHashrate") },
+  ];
+
   return (
     <Tile className="tw-p-5">
-      <TileTitle>Hash Boards</TileTitle>
+      <TileTitle>{t("dashboard.hashBoards.title")}</TileTitle>
       <Table size="sm" useZebraStyles={false}>
         <TableHead>
           <TableRow>
-            {HEADERS.map((h) => (
+            {headers.map((h) => (
               <TableHeader key={h.key}>{h.header}</TableHeader>
             ))}
           </TableRow>

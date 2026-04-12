@@ -51,7 +51,20 @@
     "saveTodo": "todo"
   },
   "dashboard": {
-    "hostname": "Nombre de host: {{name}}"
+    "hostname": "Nombre de host: {{name}}",
+    "hashBoards": {
+      "title": "Tarjetas Hash",
+      "col": {
+        "id": "ID",
+        "realHashrate": "Tasa de hash real",
+        "voltage": "Voltaje",
+        "boardTemp": "Temp. placa",
+        "chipTemp": "Temp. chip",
+        "frequency": "Frecuencia",
+        "asic": "ASIC#",
+        "hwErrorHashrate": "Tasa de hash de error HW"
+      }
+    }
   },
   "overview": {
     "fanMonitor": "Monitor de ventiladores",
