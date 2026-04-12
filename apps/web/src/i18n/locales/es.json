@@ -90,6 +90,10 @@
   "log": {
     "title": "Registro",
     "refresh": "Actualizar",
+    "search": "Buscar registros...",
+    "filterSeverity": "Filtrar severidad",
+    "filterApply": "Aplicar",
+    "filterReset": "Restablecer",
     "selectSeverity": "Seleccionar Severidad",
     "selectAll": "Todos",
     "severity": {
@@ -104,6 +108,14 @@
       "name": "Nombre",
       "description": "Descripción",
       "severity": "Severidad"
+    },
+    "pagination": {
+      "itemsPerPage": "Elementos por página:",
+      "itemRange": "{{min}}–{{max}} de {{total}} elementos",
+      "pageRange": "de {{total}} páginas",
+      "pageRangeOne": "de 1 página",
+      "backwardText": "Página anterior",
+      "forwardText": "Página siguiente"
     }
   },
   "pools": {

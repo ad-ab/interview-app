@@ -90,6 +90,10 @@
   "log": {
     "title": "Protokoll",
     "refresh": "Aktualisieren",
+    "search": "Protokolle durchsuchen...",
+    "filterSeverity": "Schweregrad filtern",
+    "filterApply": "Anwenden",
+    "filterReset": "Zurücksetzen",
     "selectSeverity": "Schweregrad wählen",
     "selectAll": "Alle",
     "severity": {
@@ -104,6 +108,14 @@
       "name": "Name",
       "description": "Beschreibung",
       "severity": "Schweregrad"
+    },
+    "pagination": {
+      "itemsPerPage": "Einträge pro Seite:",
+      "itemRange": "{{min}}–{{max}} von {{total}} Einträgen",
+      "pageRange": "von {{total}} Seiten",
+      "pageRangeOne": "von 1 Seite",
+      "backwardText": "Vorherige Seite",
+      "forwardText": "Nächste Seite"
     }
   },
   "pools": {
