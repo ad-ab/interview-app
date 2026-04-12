@@ -12,19 +12,19 @@ import TileTitle from "@/components/TileTitle";
 import { UNITS } from "@/types";
 import { MOCK_HASH_BOARDS } from "@/mockData";
 
+const COLUMN_KEYS = [
+  "dashboard.hashBoards.col.id",
+  "dashboard.hashBoards.col.realHashrate",
+  "dashboard.hashBoards.col.voltage",
+  "dashboard.hashBoards.col.boardTemp",
+  "dashboard.hashBoards.col.chipTemp",
+  "dashboard.hashBoards.col.frequency",
+  "dashboard.hashBoards.col.asic",
+  "dashboard.hashBoards.col.hwErrorHashrate",
+] as const;
+
 export default function HashBoardsTile() {
   const { t } = useTranslation();
-
-  const headers = [
-    { key: "id",        header: t("dashboard.hashBoards.col.id")              },
-    { key: "hashrate",  header: t("dashboard.hashBoards.col.realHashrate")    },
-    { key: "voltage",   header: t("dashboard.hashBoards.col.voltage")         },
-    { key: "boardTemp", header: t("dashboard.hashBoards.col.boardTemp")       },
-    { key: "chipTemp",  header: t("dashboard.hashBoards.col.chipTemp")        },
-    { key: "freq",      header: t("dashboard.hashBoards.col.frequency")       },
-    { key: "asic",      header: t("dashboard.hashBoards.col.asic")            },
-    { key: "hwErr",     header: t("dashboard.hashBoards.col.hwErrorHashrate") },
-  ];
 
   return (
     <Tile className="tw-p-5">
@@ -32,8 +32,8 @@ export default function HashBoardsTile() {
       <Table size="sm" useZebraStyles={false}>
         <TableHead>
           <TableRow>
-            {headers.map((h) => (
-              <TableHeader key={h.key}>{h.header}</TableHeader>
+            {COLUMN_KEYS.map((key) => (
+              <TableHeader key={key}>{t(key)}</TableHeader>
             ))}
           </TableRow>
         </TableHead>
