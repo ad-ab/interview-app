@@ -51,7 +51,20 @@
     "saveTodo": "todo"
   },
   "dashboard": {
-    "hostname": "Hostname: {{name}}"
+    "hostname": "Hostname: {{name}}",
+    "hashBoards": {
+      "title": "Hash-Boards",
+      "col": {
+        "id": "ID",
+        "realHashrate": "Echte Hashrate",
+        "voltage": "Spannung",
+        "boardTemp": "Board-Temp.",
+        "chipTemp": "Chip-Temp.",
+        "frequency": "Frequenz",
+        "asic": "ASIC#",
+        "hwErrorHashrate": "HW-Fehler-Hashrate"
+      }
+    }
   },
   "overview": {
     "fanMonitor": "Lüfterüberwachung",

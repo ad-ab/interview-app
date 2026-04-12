@@ -2,38 +2,9 @@ import { useFormat } from "@/hooks/useFormat";
 import { Tile } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { MOCK_FANS } from "@/mockData";
+import { UNITS, POOL_STATUS, TUNER_STATUS } from "@/types";
 
 const CONFIRMATION_GREEN = "#42be65";
-
-const enum UNITS {
-  TEMPERATURE = "°C",
-  HASHRATE = "TH/s",
-  EFFICIENCY = "W/THs",
-  POWER = "kW",
-  RPM = "RPM",
-}
-
-const enum POOL_STATUS {
-  ALIVE = "alive",
-  DEAD = "dead",
-  DEGRADED = "degraded",
-}
-
-const enum TUNER_STATUS {
-  STABLE = "stable",
-  UNSTABLE = "unstable",
-  ERROR = "error",
-}
-
-const enum METRIC_LABEL {
-  REAL_HASHRATE = "realHashrate",
-  TEMPERATURE = "temperature",
-  EFFICIENCY = "efficiency",
-  POWER = "power",
-  DPS = "dps",
-  POOL_STATUS = "poolStatus",
-  TUNER_STATUS = "tunerStatus",
-}
 
 export const isNumber = (value: unknown) => Number.isFinite(value);
 

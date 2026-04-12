@@ -1,6 +1,12 @@
-import { LogSeverity, type LogEntry, type PoolGroup } from "@/types";
+import { LogSeverity, type BoardRow, type LogEntry, type PoolGroup } from "@/types";
 
 // ── Dashboard — DashboardPage ────────────────────────────────────────────────
+
+export const MOCK_HASH_BOARDS: readonly BoardRow[] = [
+  { id: 1, hashrate: 24.83, voltage: 12.40, boardTemp: 68, chipTemp: 78, freq: 650.0, asic: 108, hwErr: 0.0 },
+  { id: 2, hashrate: 31.47, voltage: 12.38, boardTemp: 72, chipTemp: 84, freq: 725.5, asic: 108, hwErr: 0.0 },
+  { id: 3, hashrate: 18.92, voltage: 12.35, boardTemp: 61, chipTemp: 74, freq: 562.5, asic: 108, hwErr: 0.0 },
+];
 
 export const MOCK_WORKERS = [
   {
@@ -33,38 +39,6 @@ export const MOCK_WORKERS = [
     temp: "—",
     status: "error",
   },
-];
-
-export const MOCK_POOLS = [
-  {
-    name: "Braiins Pool",
-    share: 60,
-    accepted: "14,823",
-    rejected: "12",
-    latency: "18 ms",
-  },
-  {
-    name: "Slush Pool",
-    share: 30,
-    accepted: "7,412",
-    rejected: "8",
-    latency: "24 ms",
-  },
-  {
-    name: "F2Pool",
-    share: 10,
-    accepted: "2,471",
-    rejected: "4",
-    latency: "41 ms",
-  },
-];
-
-export const MOCK_EVENTS = [
-  { time: "14:32", type: "info", msg: "Pool failover: switched to Slush Pool" },
-  { time: "13:15", type: "warning", msg: "Worker #5 hashrate dropped to 0" },
-  { time: "11:40", type: "info", msg: "Firmware updated to BOS+ 23.04" },
-  { time: "09:02", type: "success", msg: "New best share submitted" },
-  { time: "08:55", type: "warning", msg: "Chip temp exceeded 75°C on board 2" },
 ];
 
 // ── Dashboard — OverviewTile ─────────────────────────────────────────────────
