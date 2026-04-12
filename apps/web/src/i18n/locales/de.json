@@ -105,5 +105,26 @@
       "description": "Beschreibung",
       "severity": "Schweregrad"
     }
+  },
+  "pools": {
+    "title": "Pools",
+    "columns": {
+      "url": "Pool-URL",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "actions": "Aktionen"
+    },
+    "addPool": "Pool hinzufügen",
+    "save": "Speichern",
+    "saveTodo": "todo",
+    "validation": {
+      "invalidUrl": "Muss mit stratum+tcp:// oder stratum+ssl:// beginnen"
+    },
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten",
+    "delete": "Löschen",
+    "deleteConfirm": "Möchten Sie diesen Pool wirklich entfernen?",
+    "deleteYes": "Ja",
+    "deleteNo": "Nein"
   }
 }

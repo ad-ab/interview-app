@@ -52,6 +52,7 @@ coverage/
 
 # Claude Code workspace files
 .claude/
+.superpowers/
 
 # OS
 .DS_Store
