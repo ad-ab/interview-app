@@ -13,7 +13,6 @@ import {
 } from "@carbon/react";
 import { ArrowUp, ArrowDown, TrashCan } from "@carbon/react/icons";
 import { useTranslation } from "react-i18next";
-import { STRATUM_URL_REGEX } from "@/regex";
 import type { PoolConfig } from "@/types";
 
 interface PoolsTableProps {
@@ -37,20 +36,6 @@ export default function PoolsTable({
   const [confirmingDeleteId, setConfirmingDeleteId] = useState<string | null>(
     null,
   );
-  const [invalidUrls, setInvalidUrls] = useState<Set<string>>(new Set());
-
-  const handleUrlBlur = (poolId: string, value: string) => {
-    setInvalidUrls((prev) => {
-      const next = new Set(prev);
-      if (value.length > 0 && !STRATUM_URL_REGEX.test(value)) {
-        next.add(poolId);
-      } else {
-        next.delete(poolId);
-      }
-      return next;
-    });
-  };
-
   return (
     <Table>
       <TableHead>
@@ -130,9 +115,6 @@ export default function PoolsTable({
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       onUpdate(pool.id, "url", e.target.value)
                     }
-                    onBlur={() => handleUrlBlur(pool.id, pool.url)}
-                    invalid={invalidUrls.has(pool.id)}
-                    invalidText={t("pools.validation.invalidUrl")}
                   />
                 </div>
               </TableCell>
