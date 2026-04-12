@@ -1,4 +1,5 @@
-import { Outlet, useLocation } from "@tanstack/react-router";
+import React from "react";
+import { Outlet, useLocation, useNavigate } from "@tanstack/react-router";
 import { SideNav, SideNavItems, SideNavMenuItem } from "@carbon/react";
 import { useTranslation } from "react-i18next";
 import { useSidebar } from "@/context/SidebarContext";
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 export default function SystemLayout() {
   const { pathname } = useLocation();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { sidebarOpen, closeSidebar } = useSidebar();
   const isLargeScreen = useMediaQuery(`(min-width: ${breakpoints.lg})`);
 
@@ -35,7 +37,11 @@ export default function SystemLayout() {
               key={item.to}
               isActive={pathname === item.to}
               href={item.to}
-              onClick={!isLargeScreen ? closeSidebar : undefined}
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                navigate({ to: item.to });
+                if (!isLargeScreen) closeSidebar();
+              }}
             >
               {t(item.labelKey)}
             </SideNavMenuItem>

@@ -102,7 +102,10 @@ const routeTree = rootRoute.addChildren([
   systemRoute.addChildren([settingsRoute, networkRoute, logRoute]),
 ])
 
-const router = createRouter({ routeTree })
+const router = createRouter({
+  routeTree,
+  basepath: import.meta.env.BASE_URL,
+})
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

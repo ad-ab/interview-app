@@ -6,14 +6,19 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -22,26 +27,34 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout Code 
+      - name: Checkout Code
         uses: actions/checkout@v4
-      
+
       - name: Install pnpm
-        uses: pnpm/action-setup@v6
+        uses: pnpm/action-setup@v4
         with:
-          version: 10
-        
+          version: 10.27.0
+
+      - name: PNPM Version
+        run: pnpm -v
+
+      - name: PNPM Version
+        run: cat pnpm-workspace.yaml
+
       - name: Install project files
-        run: pnpm run install
+        run: pnpm install
 
       - name: Run the build
         run: pnpm run build
+        env:
+          VITE_BASE_URL: /${{ github.event.repository.name }}/
 
       - name: Upload static files as artifact
         id: deployment
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
         with:
-          path: build_outputs_folder/
-  
+          path: apps/web/dist/
+
   # Deployment job
   deploy:
     environment:

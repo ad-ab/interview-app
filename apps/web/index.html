@@ -2,9 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fullstack App</title>
+    <script>
+      // Restore path encoded by 404.html before the router boots.
+      (function () {
+        var params = new URLSearchParams(location.search);
+        var p = params.get('p');
+        if (p) {
+          params.delete('p');
+          var remaining = params.toString();
+          var url =
+            location.pathname +
+            (remaining ? '?' + remaining : '') +
+            p +
+            location.hash;
+          history.replaceState(null, '', url);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting…</title>
+    <script>
+      // Single-page app redirect for GitHub Pages.
+      // Encodes the full path + search + hash into a query param and
+      // redirects to the base URL. index.html will decode and restore it
+      // via history.replaceState before the router initialises.
+      (function () {
+        var base = '/interview-app';
+        var path = location.pathname.slice(base.length) || '/';
+        var search = location.search;
+        var hash = location.hash;
+        var redirect = base + '/?p=' + encodeURIComponent(path + search) + hash;
+        location.replace(redirect);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

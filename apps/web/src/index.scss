@@ -1,5 +1,8 @@
 @use 'sass:color';
 
+@use '@carbon/react/scss/config' with (
+  $use-akamai-cdn: true
+);
 @use '@carbon/react/scss/breakpoint' as bp;
 @use '@carbon/react';
 
