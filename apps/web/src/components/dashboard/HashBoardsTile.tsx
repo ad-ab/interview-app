@@ -41,13 +41,25 @@ export default function HashBoardsTile() {
           {MOCK_HASH_BOARDS.map((row) => (
             <TableRow key={row.id} className="tw-bg-transparent">
               <TableCell>{row.id}</TableCell>
-              <TableCell>{row.hashrate.toFixed(2)} {UNITS.HASHRATE}</TableCell>
-              <TableCell>{row.voltage.toFixed(2)} {UNITS.VOLTAGE}</TableCell>
-              <TableCell>{row.boardTemp} {UNITS.TEMPERATURE}</TableCell>
-              <TableCell>{row.chipTemp} {UNITS.TEMPERATURE}</TableCell>
-              <TableCell>{row.freq.toFixed(1)} {UNITS.FREQUENCY}</TableCell>
+              <TableCell>
+                {row.hashrate.toFixed(2)} {UNITS.HASHRATE}
+              </TableCell>
+              <TableCell>
+                {row.voltage.toFixed(2)} {UNITS.VOLTAGE}
+              </TableCell>
+              <TableCell>
+                {row.boardTemp} {UNITS.TEMPERATURE}
+              </TableCell>
+              <TableCell>
+                {row.chipTemp} {UNITS.TEMPERATURE}
+              </TableCell>
+              <TableCell>
+                {row.freq.toFixed(1)} {UNITS.FREQUENCY}
+              </TableCell>
               <TableCell>{row.asic}</TableCell>
-              <TableCell>{row.hwErr.toFixed(3)} {UNITS.HASHRATEERRORS}</TableCell>
+              <TableCell>
+                {row.hwErr.toFixed(3)} {UNITS.HASHRATEERRORS}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
