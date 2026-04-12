@@ -35,12 +35,6 @@ jobs:
         with:
           version: 10.27.0
 
-      - name: PNPM Version
-        run: pnpm -v
-
-      - name: PNPM Version
-        run: cat pnpm-workspace.yaml
-
       - name: Install project files
         run: pnpm install
 
