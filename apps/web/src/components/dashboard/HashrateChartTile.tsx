@@ -140,7 +140,7 @@ export default function HashrateChartTile() {
           </TabList>
         </Tabs>
       </div>
-      <div className="tw-p-4">
+      <div className="tw-px-4 tw-pb-4 tw-pt-6">
         {selectedIndex === 0 && (
           <LineChart data={MOCK_OVERALL_SERIES} options={overallOptions} />
         )}
