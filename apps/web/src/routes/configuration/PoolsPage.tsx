@@ -96,7 +96,7 @@ export default function PoolsPage() {
       {draftGroups.map((group, groupIndex) => (
         <div key={group.name}>
           <TileTitle>{group.name}</TileTitle>
-          <Tile className="tw-p-0">
+          <Tile className="tw-flex tw-flex-col tw-w-full tw-p-0">
             <PoolsTable
               pools={group.pools}
               onToggle={(poolId) => handleToggle(groupIndex, poolId)}
