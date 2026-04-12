@@ -50,9 +50,9 @@ export default function HashBoardsTile() {
             ))}
           </TableRow>
         </TableHead>
-        <TableBody style={{ background: "transparent" }}>
+        <TableBody className="tw-bg-transparent">
           {BOARD_ROWS.map((row) => (
-            <TableRow key={row.id} style={{ background: "transparent" }}>
+            <TableRow key={row.id} className="tw-bg-transparent">
               <TableCell>{row.id}</TableCell>
               <TableCell>{row.hashrate.toFixed(2)} {UNITS.HASHRATE}</TableCell>
               <TableCell>{row.voltage.toFixed(2)} {UNITS.VOLTAGE}</TableCell>
