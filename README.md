@@ -2,6 +2,17 @@
 
 Rust backend (Actix-web) + React frontend (TanStack Router) monorepo.
 
+## Example Frontend Feature Dev
+
+
+
+https://github.com/user-attachments/assets/be06419e-2224-470d-9eb4-3ef50ed7268b
+
+
+
+
+Press play to see the video.
+
 ## Quick Start
 
 ### Prerequisites
